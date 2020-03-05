@@ -32,12 +32,10 @@ class Email extends React.Component {
                     },
                   body: JSON.stringify(data) // body data type must match "Content-Type" header
                 });
-                return await response.json(); // parses JSON response into native JavaScript objects
+                return response.json(); // parses JSON response into native JavaScript objects
                 }
-                postData(url, data)
-                .then((data) => {
-                  console.log(data); // JSON data parsed by `response.json()` call
-                });
+                const response = postData(url, data)
+                console.log(response)
         } else {
             alert('Invalid email, check again :)')
         }
