@@ -19,16 +19,16 @@ class Email extends React.Component {
         if (this.state.email === '') {
             alert('Please enter an Email')
         } else if (emailPattern.test(this.state.email)){
-            const url = 'http://localhost/5001'
+            const url = 'http://localhost:5001/registers'
             let data = {email: this.state.email}
             console.log(data)
             fetch(url, {
-                method: 'PUT',
+                method: 'POST',
                 body: JSON.stringify(data),
                 headers:{
                     'Content-Type': 'application/json'
                 }
-            }).then(res => res.json())
+            }).then(res => console.log(res.json()))
                 .catch(error => console.error('Error:', error))
                 .then(response => console.log('Success:', response));
         } else {

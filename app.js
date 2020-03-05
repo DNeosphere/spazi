@@ -5,6 +5,7 @@ const express = require("express"),
     mongoose = require('mongoose');
     require('./models/user');
     require('./models/register');
+const cors = require('cors');
 const connectionString = 'mongodb+srv://dioniMongo:oxcVjB9Ir1AYV8SL@clustertest0-nnzbs.mongodb.net/spazi?retryWrites=true&w=majority';
 
 
@@ -39,6 +40,7 @@ registers.route('/').post(regCtrl.createUser);
 app.use('/api/registers', registers);
 
 app.use(router);
+app.use(cors);
 
 // Connect to DB
 mongoose.connect(connectionString, { useNewUrlParser: true }, function(err, res) {
@@ -47,7 +49,7 @@ mongoose.connect(connectionString, { useNewUrlParser: true }, function(err, res)
   } else {
     console.log('DataBase connected ' + res);
   }
-  app.listen(3000, function() {
-    console.log("Node server running on http://localhost:3000");
+  app.listen(5001, function() {
+    console.log("Node server running on http://localhost:5001");
   });
 });
