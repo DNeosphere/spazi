@@ -19,23 +19,28 @@ class Email extends React.Component {
         if (this.state.email === '') {
             alert('Please enter an Email')
         } else if (emailPattern.test(this.state.email)){
-            const url = 'http://localhost:5001/registers'
+            const url = 'http://localhost:5001/api/registers'
             let data = {email: this.state.email}
-
+            
             async function postData(url = '', data = {}) {
                 // Default options are marked with *
                 const response = await fetch(url, {
                   method: 'POST', // *GET, POST, PUT, DELETE, etc.
-                  mode: 'cors', // no-cors, *cors, same-origin
+                  //mode: 'no-cors',
                     headers: {
                     'Content-Type': 'application/json'
                     },
                   body: JSON.stringify(data) // body data type must match "Content-Type" header
                 });
-                return response.json(); // parses JSON response into native JavaScript objects
-                }
-                const response = postData(url, data)
-                console.log(response)
+                return await response.json().catch(err => console.log(err.meessage)) // parses JSON response into native JavaScript objects
+            }
+            try{
+                const resp = postData(url, data)
+                console.log(resp)
+            } catch (err){
+                console.log(err.message)
+            }
+
         } else {
             alert('Invalid email, check again :)')
         }

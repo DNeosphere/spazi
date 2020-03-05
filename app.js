@@ -8,7 +8,7 @@ const express = require("express"),
 const cors = require('cors');
 const connectionString = 'mongodb+srv://dioniMongo:oxcVjB9Ir1AYV8SL@clustertest0-nnzbs.mongodb.net/spazi?retryWrites=true&w=majority';
 
-
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(methodOverride());
@@ -40,7 +40,7 @@ registers.route('/').post(regCtrl.createUser);
 app.use('/api/registers', registers);
 
 app.use(router);
-app.use(cors);
+
 
 // Connect to DB
 mongoose.connect(connectionString, { useNewUrlParser: true }, function(err, res) {
