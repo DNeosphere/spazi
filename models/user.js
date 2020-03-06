@@ -9,5 +9,5 @@ const userSchema = new Schema({
   ['Dog', 'Cat', 'Person', 'Plant']
         },
   specification:  { type: String }
-});
+}, {timestamps: true});
 module.exports = mongoose.model('User', userSchema);
