@@ -21,7 +21,7 @@ class Email extends React.Component {
         } else if (emailPattern.test(this.state.email)){
             const url = 'http://localhost:5001/api/registers'
             let data = {email: this.state.email}
-            
+
             async function postData(url = '', data = {}) {
                 // Default options are marked with *
                 const response = await fetch(url, {
@@ -32,18 +32,21 @@ class Email extends React.Component {
                     },
                   body: JSON.stringify(data) // body data type must match "Content-Type" header
                 });
+                if (response.status === 200) {
+                    alert('Email sent succesfully')
+                }
                 return await response.json().catch(err => console.log(err.meessage)) // parses JSON response into native JavaScript objects
             }
             try{
                 const resp = postData(url, data)
-                console.log(resp)
+
             } catch (err){
                 console.log(err.message)
             }
-
         } else {
             alert('Invalid email, check again :)')
         }
+        this.setState( {email: ''} )
     }
 
 
@@ -51,7 +54,7 @@ class Email extends React.Component {
         return (
           <div className='container-form-email'>
             <form className='email-form' onSubmit={this.handleSubmit}>
-                <input className='input' type="text" value={this.state.email} onChange={this.handleChange} placeholder='Enter you email'/>
+                <input className='input' id='email-input' value={this.state.email} onChange={this.handleChange} placeholder='Enter you email'/>
                 <input className='submit-btn' type="submit" value="I want to know more!" />
             </form>
           </div>

@@ -71,10 +71,17 @@ img {
 	border-radius: 3px;
 	font-size: 1.30em;
 	margin-left: 10px;
-	padding: 10px;
 	width: 250px;
 	height: 100%;
+	opacity: 1;
+	transition: 0.3s;
+	border-color: transparent;
+
 }
+.submit-btn:hover{
+	background-color: #355B8C;
+}
+
 .input {
 	border-radius: 3px;
 	font-size: 1.25em;
@@ -82,11 +89,9 @@ img {
 	padding: 10px;
 	width: 500px;
 	height: 100%;
+	text-indent: 20px;
 }
-form label {
-	font-size: 1.25em;
-	color: 131A40;
-}
+
 
 /* ---- Layout Containers ---- */
 
@@ -112,6 +117,8 @@ form label {
 	padding: 2em 0;
 	margin-top: 30px;
 	color: white;
+	position: absolute;
+	min-width: 100%;
 }
 
 /* ---- Page Elements ---- */
@@ -124,6 +131,17 @@ form label {
 }
 .feat-img {
 	border-radius: 5px;
+}
+
+/*  ----- Columns styles ------ */
+
+.special-p {
+	font-size: 1.5em;
+	font-style: italic;
+	color: #17AEBF;
+	padding-left: 40px;
+	width: 70%;
+
 }
 
 /* ================================= 
@@ -140,4 +158,5 @@ form label {
 	.tagline {
 		font-size: 1.8em;
 	}
+
 }
