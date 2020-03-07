@@ -19,7 +19,7 @@ class Email extends React.Component {
         if (this.state.email === '') {
             alert('Please enter an Email')
         } else if (emailPattern.test(this.state.email)){
-            const url = 'http://spazi.rocks:5001/api/registers'
+            const url = 'https://spazi.rocks:5001/api/registers'
             let data = {email: this.state.email}
 
             async function postData(url = '', data = {}) {
@@ -41,6 +41,7 @@ class Email extends React.Component {
                 const resp = postData(url, data)
 
             } catch (err){
+                alert('Something went wrong')
                 console.log(err.message)
             }
         } else {
@@ -52,15 +53,15 @@ class Email extends React.Component {
 
     render() {
         return (
-          <div className='container-form-email content'>
-            <form className='email-form' onSubmit={this.handleSubmit}>
-                <input className='email-form--input input' id='email-input' value={this.state.email} onChange={this.handleChange} placeholder='Enter you email'/>
-                <input className='email-form--button submit-btn' type="submit" value="I want to know more!" />
-            </form>
-          </div>
+            <div className='container-form-email content'>
+                <form className='email-form' onSubmit={this.handleSubmit}>
+                    <input className='email-form--input input' id='email-input' value={this.state.email} onChange={this.handleChange} placeholder='Enter you email'/>
+                    <input className='email-form--button submit-btn' type="submit" value="I want to know more!" />
+                </form>
+            </div>
 
-        );
-      }
+            );
+        }
 }
 
 
