@@ -1,9 +1,12 @@
 import React from "react"
-import Header from './components/Header'
-import Banner from './components/Banner'
-import Email from './components/Email'
-import Columns from './components/Columns'
-import Footer from './components/Footer'
+
+import {
+    Header,
+    Banner,
+    Email,
+    Columns,
+    Footer
+} from './components'
 
 function App() {
     return(

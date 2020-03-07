@@ -39,6 +39,10 @@ img {
 /* ================================= 
   Base Layout Styles
 ==================================== */
+/* ---- Helpers ---- */
+.content {
+	padding: 0 15px;
+}
 
 /* ---- Navigation ---- */
 
@@ -70,7 +74,6 @@ img {
 	color: white;
 	border-radius: 3px;
 	font-size: 1.30em;
-	margin-left: 10px;
 	width: 250px;
 	height: 100%;
 	opacity: 1;
@@ -85,11 +88,11 @@ img {
 .input {
 	border-radius: 3px;
 	font-size: 1.25em;
-	margin-left: 10px;
 	padding: 10px;
-	width: 500px;
+	width: 100%;
 	height: 100%;
 	text-indent: 20px;
+	border: 1px solid #cccccc;
 }
 
 
@@ -148,7 +151,16 @@ img {
   Media Queries
 ==================================== */
 
+/* Desktop */
 @media (min-width: 769px) {
+	.email-form {
+		display: flex;
+	}
+
+	.email-form--input {
+		width: 500px;
+	}
+
 	.main-header,
 	.row {
 		width: 80%;
