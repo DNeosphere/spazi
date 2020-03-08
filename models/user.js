@@ -9,13 +9,13 @@ const contactSchema = new Schema({
 
 const needsSchema = new Schema({
   schedule: { type: String },
-  subject: { type: String, enum: ['Dog', 'Cat', 'Plant']}
+  subject: { type: Schema.Types.ObjectId, ref: 'Subject'}
 });
 
 const userSchema = new Schema({
   name:    { type: String },
   contact: contactSchema,
-  needs:  needsSchema,
+  subject: { type: Schema.Types.ObjectId, ref: 'Subject'},
   reviews:  { type: String }
 }, {timestamps: true});
 module.exports = mongoose.model('User', userSchema);

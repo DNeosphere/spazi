@@ -26,12 +26,10 @@ exports.findUserByID = function (req, res){
 exports.updateUser = function(req, res){
   User.findById(req.params.id, function(err, user){
     if(err) res.send(500, err.message);
-
-    user.name = req.params.name;
-    user.contact = req.params.contact;
-    user.need = req.params.need;
-    user.subject = req.params.need;
-    user.specification = req.params.specification;
+    const body = req.body;
+    for (let item in body){
+      user[item] = body[item];
+    }
 
     console.log('PUT/users/:id');
     user.save(function (err){
@@ -52,7 +50,6 @@ exports.createUser = function(req, res){
     name: req.body.name,
     contact: req.body.contact,
     need: req.body.need,
-    subject: req.body.subject,
     specification: req.body.specification
   });
 
