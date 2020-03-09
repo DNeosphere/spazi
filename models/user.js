@@ -1,5 +1,6 @@
 const mongoose = require('mongoose'),
     Schema   = mongoose.Schema;
+    subjectSchema = require('./subject');
 
 const contactSchema = new Schema({
   phone: { type: Number },
@@ -15,7 +16,7 @@ const needsSchema = new Schema({
 const userSchema = new Schema({
   name:    { type: String },
   contact: contactSchema,
-  subject: { type: Schema.Types.ObjectId, ref: 'Subject'},
+  subject: [subjectSchema],
   reviews:  { type: String }
 }, {timestamps: true});
 module.exports = mongoose.model('User', userSchema);

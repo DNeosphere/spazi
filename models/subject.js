@@ -4,8 +4,8 @@ const mongoose = require('mongoose'),
 const subjectSchema = new Schema({
   name: { type: String },
   type: { type: String, enum: ['dog', 'cat', 'plant'] },
-  specifications: { type: String},
-  ownerId: { type: Schema.Types.ObjectId, ref: 'User'}
+  specifications: { type: String}
 }, { timestamps: true });
 
 module.exports = mongoose.model('Subject', subjectSchema);
+module.exports = subjectSchema;
