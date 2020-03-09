@@ -25,11 +25,13 @@ exports.updateUser = async function(req, res){
   const body = req.body;
 
   for (let contact in body.contact){
+    console.log(contact);
     user.contact[contact] = body.contact[contact];
   }
 
   for (let item in body){
     if (item != 'contact' && item != 'subject'){
+      console.log(item);
       user[item] = body[item];
     }
   }
@@ -50,7 +52,7 @@ exports.createUser = async function(req, res){
     contact: req.body.contact,
     need: req.body.need,
     specification: req.body.specification,
-    subject: new Subject(req.body.subject)
+    subject: req.body.subject
   });
 
     console.log('POST/users/');
@@ -66,6 +68,6 @@ exports.deleteUser = async function(req, res){
   const user = await User.findById(req.params.id).catch(err => console.error(err.message));
   user.remove(function(err) {
       if(err) res.send(500, err.message);
-    res.status(200).send();
+    res.status(200).send({});
     });
 };

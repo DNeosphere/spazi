@@ -13,23 +13,37 @@ exports.findAllSubjectByUser = async function (req, res){
 
 
 //GET - ID
+/*
 exports.findSubjectByID = async function (req, res){
   const subject = await Subject.findById(req.params.id).catch(err => console.error(err.message));
 
+  //This method doesnt work because sujects are not saving in Subjects collection
+  //only as embedded docs in user collections.... This mthod must be removed
   console.log('GET/subjects/:id');
   res.status(200).jsonp(subject);
-};
+};*/
 
 //PUT
 exports.updateSubject = async function(req, res){
-  const subject = await Subject.findById(req.params.id).catch(err => console.error(err.message));
-  const body = req.body;
+  const user = await User.findById(req.params.ownerId).catch(err => console.error(err.message));
+        subjects = user.subject;
+        body = req.body;
+  let selecSubject;
+  let subject;
+
+  for (subject of subjects){
+    if (subject.id == req.params.id){
+      selecSubject = subject;
+      break;
+    }
+  }
+  
   for (let item in body){
-    subject[item] = body[item];
+    selecSubject[item] = body[item];
   }
 
   console.log('PUT/subjects/:id');
-  subject.save(function (err){
+  user.save(function (err){
     if(err) res.send(500, err.message);
       
       res.status(200).jsonp(subject);
@@ -43,9 +57,9 @@ exports.createSubject = async function(req, res){
   .catch(err => {
     console.error(err.message);
   });
-  console.log('REQ', req.body);
+  //console.log('REQ', req.body);
   //console.log('PARAMS ------',req.params);
-  console.log('Owner id: -----', req.params.ownerId);
+  //console.log('Owner id: -----', req.params.ownerId);
   //req.body = req.body.jsonp();
   const subject = new Subject({
     name: req.body.name,
@@ -64,9 +78,19 @@ exports.createSubject = async function(req, res){
 
 //DELETE
 exports.deleteSubject = async function(req, res){
-  const subject = await Subject.findById(req.params.id).catch(err => console.error(err.message));
-    subject.remove(function(err) {
-      if(err) res.send(500, err.message);
-    res.status(200).send();
-    });
+  const user = await User.findById(req.params.id).catch(err => console.error(err.message));
+        subjects = user.subject;
+  let selecSubject = 0;
+      subject;
+
+  for (subject of subjects){
+    if (subject.id == req.params.id){
+      selecSubject += 1;
+      break;
+    }
+    selecSubject += 1;
+  }
+
+  user.save();
+  res.status(200).json({});
 };
