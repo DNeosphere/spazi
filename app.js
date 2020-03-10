@@ -5,6 +5,10 @@ const express = require("express"),
     mongoose = require('mongoose');
     require('./models/user');
     require('./models/register');
+    require('./models/subject');
+    routeUser = require('./routes/userRoutes');
+    routeRegister = require('./routes/registerRoutes');
+    routeSubject = require('./routes/subjectRoutes');
 const cors = require('cors');
 const connectionString = 'mongodb+srv://dioniMongo:oxcVjB9Ir1AYV8SL@clustertest0-nnzbs.mongodb.net/spazi?retryWrites=true&w=majority';
 
@@ -19,17 +23,7 @@ router.get('/', function(req, res) {
    res.send("Hello World!");
 });
 
-
-//API routes User
-const userCtrl = require('./controllers/user');
-
-const users = express.Router();
-
-users.route('/').get(userCtrl.findAllUsers).post(userCtrl.createUser);
-
-users.route('/:id').get(userCtrl.findUserByID).put(userCtrl.updateUser).delete(userCtrl.deleteUser);
-
-app.use('/api/users', users);
+/*
 
 //API routes Register
 const regCtrl = require('./controllers/register');
@@ -37,8 +31,11 @@ const registers = express.Router();
 
 registers.route('/').post(regCtrl.createUser);
 
-app.use('/api/registers', registers);
+app.use('/api/registers', registers);*/
 
+app.use(routeUser);
+app.use(routeRegister);
+app.use(routeSubject);
 app.use(router);
 
 

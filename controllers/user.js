@@ -1,63 +1,61 @@
-var mongoose = require('mongoose');
-var User  = mongoose.model('User');
+const mongoose = require('mongoose');
+      User  = mongoose.model('User');
+      Subject = mongoose.model('Subject');
+      subjectCtrl = require('../controllers/subject');
+
 
 //GET
-exports.findAllUsers = function (req, res){
-  User.find(function(err, users) {
-    if(err) res.send(500, err.message);
-
-    console.log('GET/users')
-    res.status(200).jsonp(users);
-  });
+exports.findAllUsers = async function (req, res){
+  const users = await User.find().catch(err => console.error(err.message));
+  
+  res.status(200).jsonp(users);
 };
 
-
 //GET - ID
-exports.findUserByID = function (req, res){
-  User.findById(req.params.id, function(err, user){
-    if(err) res.send(500, err.message);
+exports.findUserByID = async function (req, res){
+  const user = await User.findById(req.params.id).catch(err => console.error(err.message));
 
     console.log('GET/users/:id');
+    res.status(200).jsonp(user);
+};
+
+//PUT
+exports.updateUser = async function(req, res){
+  const user = await User.findById(req.params.id).catch(err => console.error(err.message));
+  const body = req.body;
+
+  for (let contact in body.contact){
+    console.log(contact);
+    user.contact[contact] = body.contact[contact];
+  }
+
+  for (let item in body){
+    if (item != 'contact' && item != 'subject'){
+      console.log(item);
+      user[item] = body[item];
+    }
+  }
+
+  console.log('PUT/users/:id');
+  user.save(function (err){
+    if(err) res.send(500, err.message);
+      
     res.status(200).jsonp(user);
   });
 };
 
-//PUT
-exports.updateUser = function(req, res){
-  User.findById(req.params.id, function(err, user){
-    if(err) res.send(500, err.message);
-
-    user.name = req.params.name;
-    user.contact = req.params.contact;
-    user.need = req.params.need;
-    user.subject = req.params.need;
-    user.specification = req.params.specification;
-
-    console.log('PUT/users/:id');
-    user.save(function (err){
-      if(err) res.send(500, err.message);
-      
-      res.status(200).jsonp(user);
-    });
-
-  });
-};
-
 //POST
-exports.createUser = function(req, res){
+exports.createUser = async function(req, res){
 
-  console.log('REQ', req.body);
-  //req.body = req.body.jsonp();
-    const user = new User({
+    const user = await new User({
     name: req.body.name,
     contact: req.body.contact,
     need: req.body.need,
-    subject: req.body.subject,
-    specification: req.body.specification
+    specification: req.body.specification,
+    subject: req.body.subject
   });
 
     console.log('POST/users/');
-    console.log('Body', req.body);
     user.save(function (err){
       if(err) res.status(500).send(err.message);
       
@@ -66,11 +64,10 @@ exports.createUser = function(req, res){
 };
 
 //DELETE
-exports.deleteUser = function(req, res){
-  User.findById(req.params.id, function(err, user){
-    user.remove(function(err) {
+exports.deleteUser = async function(req, res){
+  const user = await User.findById(req.params.id).catch(err => console.error(err.message));
+  user.remove(function(err) {
       if(err) res.send(500, err.message);
-    res.status(200).send();
+    res.status(200).send({});
     });
-  });
 };
