@@ -5,6 +5,8 @@ import '../styles/forms.css';
 import "./../styles/base.css";
 import "./../styles/flexbox.css";
 
+import { Footer, Header } from '../components/'
+
 
 class SignIn extends Component {
     constructor() {
@@ -38,7 +40,7 @@ class SignIn extends Component {
 
     render() {
         return (
-            <div className='form-container'>
+                <div className='form-container'>
                     <form onSubmit={this.handleSubmit} className="FormFields" onSubmit={this.handleSubmit}>
                         <div className="FormField">
                             <label className="FormField__Label" htmlFor="email">E-Mail Address</label>
@@ -54,7 +56,7 @@ class SignIn extends Component {
                             <button className="FormField__Button mr-20">Sign In</button> <Link to="/" className="FormField__Link">Create an account</Link>
                         </div>
                     </form>
-            </div>
+                </div>
         );
     }
 }
