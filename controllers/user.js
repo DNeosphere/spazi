@@ -49,6 +49,8 @@ exports.createUser = async function(req, res){
 
     const user = await new User({
     name: req.body.name,
+    email: req.body.email,
+    password: req.body.password,
     contact: req.body.contact,
     subject: req.body.subject,
     reviews: req.body.reviews
@@ -59,7 +61,7 @@ exports.createUser = async function(req, res){
     user.save(function (err){
       if(err) res.status(500).send(err.message);
       
-      res.status(200).jsonp(user);
+      res.status(200).json({status: 'OK', message: `User ${user.name} created`});
     });
 };
 
