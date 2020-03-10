@@ -4,32 +4,18 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./styles/base.css";
 import "./styles/flexbox.css";
 
-import { Test, Landing } from "./pages";
+import { Landing, Home } from "./pages";
 
 function App() {
   return (
     <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Landing</Link>
-            </li>
-            <li>
-              <Link to="/test">Test</Link>
-            </li>
-          </ul>
-        </nav>
+      <Switch>
+          <Route path="/" exact component={Home}/>
+          <Route path="/landing" component={Landing} />
+          <Route path="/signin" />
+          <Route path="/signup" />
+      </Switch>
 
-        <Switch>
-          <Route path="/test">
-            <Test />
-          </Route>
-          <Route path="/">
-            <Landing />
-          </Route>
-        </Switch>
-      </div>
     </Router>
   );
 }
