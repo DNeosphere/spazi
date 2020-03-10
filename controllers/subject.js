@@ -8,20 +8,26 @@ exports.findAllSubjectByUser = async function (req, res){
         subjects = user.subject; 
 
     console.log('GET/users/:ownerId/subjects');
-    res.status(200).jsonp(subjects);
+    res.status(200).json(subjects);
 };
 
 
 //GET - ID
-/*
-exports.findSubjectByID = async function (req, res){
-  const subject = await Subject.findById(req.params.id).catch(err => console.error(err.message));
 
+exports.findSubjectByID = async function (req, res){
+  const user = await User.findById(req.params.ownerId).catch(err => console.error(err.message));
+        subjects = user.subject;
+
+  console.log('GET/users/:ownerId/subjects/:id');
+  for (let subject of subjects){
+    if (subject.id == req.params.id){
+      res.status(200).json(subject);
+      break;
+    }
+  }
   //This method doesnt work because sujects are not saving in Subjects collection
   //only as embedded docs in user collections.... This mthod must be removed
-  console.log('GET/subjects/:id');
-  res.status(200).jsonp(subject);
-};*/
+};
 
 //PUT
 exports.updateSubject = async function(req, res){
@@ -46,7 +52,7 @@ exports.updateSubject = async function(req, res){
   user.save(function (err){
     if(err) res.send(500, err.message);
       
-      res.status(200).jsonp(subject);
+      res.status(200).json(subject);
   });
 };
 
@@ -78,7 +84,7 @@ exports.createSubject = async function(req, res){
 
 //DELETE
 exports.deleteSubject = async function(req, res){
-  const user = await User.findById(req.params.id).catch(err => console.error(err.message));
+  /*const user = await User.findById(req.params.id).catch(err => console.error(err.message));
         subjects = user.subject;
   let selecSubject = 0;
       subject;
@@ -89,8 +95,12 @@ exports.deleteSubject = async function(req, res){
       break;
     }
     selecSubject += 1;
-  }
+  }*/
 
-  user.save();
+  const user = await User.updateOne({ _id : req.params.ownerId },
+    {$pull : { subject : {_id: req.params.id} } },
+    { multi: true}
+    )
+
   res.status(200).json({});
 };
