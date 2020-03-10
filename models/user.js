@@ -26,7 +26,7 @@ const userSchema = new Schema({
 
 // Hook to User schema to hash passwords
 
-UserSchema.pre('save', function(next) {
+userSchema.pre('save', function(next) {
   // Check if document is new or a new password has been set
   if (this.isNew || this.isModified('password')) {
     // Saving reference to this because of changing scopes

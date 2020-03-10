@@ -1,12 +1,12 @@
 const express = require('express');
 
 const router = new express.Router();
-const Subject = require('../controllers/subject');
+const Spazi = require('../controllers/spazi');
 
-router.route('/users/:ownerId/subjects').get(Subject.findAllSubjectByUser);
-router.route('/users/:ownerId/subjects/:id').get(Subject.findSubjectByID);
-router.route('/users/:ownerId/subjects/:id').put(Subject.updateSubject);
-router.route('/users/:ownerId/subjects').post(Subject.createSubject);
-router.route('/users/:ownerId/subjects/:id').delete(Subject.deleteSubject);
+router.route('/spazis').get(Spazi.findAllSpazis);
+router.route('/spazis/:id').get(Spazi.findSpaziByID);
+router.route('/spazis/:id').put(Spazi.updateSpazi);
+router.route('/spazis').post(Spazi.createSpazi);
+router.route('/spazis/:id').delete(Spazi.deleteSpazi);
 
 module.exports = router;
