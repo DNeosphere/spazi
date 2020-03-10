@@ -50,9 +50,9 @@ exports.createUser = async function(req, res){
     const user = await new User({
     name: req.body.name,
     contact: req.body.contact,
-    need: req.body.need,
-    specification: req.body.specification,
-    subject: req.body.subject
+    subject: req.body.subject,
+    reviews: req.body.reviews
+    
   });
 
     console.log('POST/users/');
