@@ -4,6 +4,8 @@ const mongoose = require('mongoose'),
 
 const bcrypt = require('bcrypt');
 
+const saltRounds = 10;
+
 const contactSchema = new Schema({
   phone: { type: String },
   email: { type: String },
@@ -45,5 +47,17 @@ userSchema.pre('save', function(next) {
     next();
   }
 });
+
+// Method on user schema to compare passwords
+
+userSchema.methods.isCorrectPassword = function(password, callback){
+  bcrypt.compare(password, this.password, function(err, same) {
+    if (err) {
+      callback(err);
+    } else {
+      callback(err, same);
+    }
+  });
+}
 
 module.exports = mongoose.model('User', userSchema);

@@ -11,6 +11,7 @@ const express = require("express"),
     routeRegister = require('./routes/registerRoutes');
     routeSubject = require('./routes/subjectRoutes');
     routeSpazi = require('./routes/spaziRoutes');
+    routeLogin = require('./routes/loginRoutes');
 const cors = require('cors');
 
 // Environment variables
@@ -33,6 +34,7 @@ app.use('/api', routeUser);
 app.use('/api', routeRegister);
 app.use('/api', routeSubject);
 app.use('/api', routeSpazi);
+app.use('/api', routeLogin);
 
 //Adding API status
 
