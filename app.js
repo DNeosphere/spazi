@@ -11,29 +11,38 @@ const express = require("express"),
     routeSubject = require('./routes/subjectRoutes');
     routeSpazi = require('./routes/spaziRoutes');
 const cors = require('cors');
-const connectionString = 'mongodb+srv://dioniMongo:oxcVjB9Ir1AYV8SL@clustertest0-nnzbs.mongodb.net/spazi?retryWrites=true&w=majority';
+
+// Environment variables
+const SPAZI_DB_USER = process.env.SPAZI_DB_USER;
+const SPAZI_DB_PWD = process.env.SPAZI_DB_PWD;
+
+const connectionString = 
+`mongodb+srv://${SPAZI_DB_USER}:${SPAZI_DB_PWD}@clustertest0-nnzbs.mongodb.net/spazi?retryWrites=true&w=majority`;
+
+// Adding Middleware
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(methodOverride());
 
-const router = express.Router();
+// Adding routes
 
-router.get('/', function(req, res) {
-   res.send("Hello World!");
+app.use('/api', routeUser);
+app.use('/api', routeRegister);
+app.use('/api', routeSubject);
+app.use('/api', routeSpazi);
+
+//Adding API status
+
+
+app.get('/api/status', function(req, res) {
+  res.json({status : 'OK'});
 });
 
 
-app.use(routeUser);
-app.use(routeRegister);
-app.use(routeSubject);
-app.use(routeSpazi);
-app.use(router);
-
-
 // Connect to DB
-mongoose.connect(connectionString, { useNewUrlParser: true }, function(err, res) {
+mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true }, function(err, res) {
   if(err) {
     console.log('ERROR: connecting to Database. ' + err);
   } else {
