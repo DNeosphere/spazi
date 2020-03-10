@@ -6,6 +6,7 @@ const express = require("express"),
     require('./models/user');
     require('./models/register');
     require('./models/subject');
+    require('./models/spazi');
     routeUser = require('./routes/userRoutes');
     routeRegister = require('./routes/registerRoutes');
     routeSubject = require('./routes/subjectRoutes');
