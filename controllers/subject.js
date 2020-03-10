@@ -25,8 +25,6 @@ exports.findSubjectByID = async function (req, res){
       break;
     }
   }
-  //This method doesnt work because sujects are not saving in Subjects collection
-  //only as embedded docs in user collections.... This mthod must be removed
 };
 
 //PUT
@@ -63,10 +61,6 @@ exports.createSubject = async function(req, res){
   .catch(err => {
     console.error(err.message);
   });
-  //console.log('REQ', req.body);
-  //console.log('PARAMS ------',req.params);
-  //console.log('Owner id: -----', req.params.ownerId);
-  //req.body = req.body.jsonp();
   const subject = new Subject({
     name: req.body.name,
     type: req.body.type,
@@ -84,18 +78,6 @@ exports.createSubject = async function(req, res){
 
 //DELETE
 exports.deleteSubject = async function(req, res){
-  /*const user = await User.findById(req.params.id).catch(err => console.error(err.message));
-        subjects = user.subject;
-  let selecSubject = 0;
-      subject;
-
-  for (subject of subjects){
-    if (subject.id == req.params.id){
-      selecSubject += 1;
-      break;
-    }
-    selecSubject += 1;
-  }*/
 
   const user = await User.updateOne({ _id : req.params.ownerId },
     {$pull : { subject : {_id: req.params.id} } },
