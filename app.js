@@ -9,6 +9,7 @@ const express = require("express"),
     routeUser = require('./routes/userRoutes');
     routeRegister = require('./routes/registerRoutes');
     routeSubject = require('./routes/subjectRoutes');
+    routeSpazi = require('./routes/spaziRoutes');
 const cors = require('cors');
 const connectionString = 'mongodb+srv://dioniMongo:oxcVjB9Ir1AYV8SL@clustertest0-nnzbs.mongodb.net/spazi?retryWrites=true&w=majority';
 
@@ -23,19 +24,11 @@ router.get('/', function(req, res) {
    res.send("Hello World!");
 });
 
-/*
-
-//API routes Register
-const regCtrl = require('./controllers/register');
-const registers = express.Router();
-
-registers.route('/').post(regCtrl.createUser);
-
-app.use('/api/registers', registers);*/
 
 app.use(routeUser);
 app.use(routeRegister);
 app.use(routeSubject);
+app.use(routeSpazi);
 app.use(router);
 
 
