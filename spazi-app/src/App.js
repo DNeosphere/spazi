@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./styles/base.css";
 import "./styles/flexbox.css";
 
-import { Landing, Home } from "./pages";
+import { Landing, Home, SignIn, SignUp} from "./pages";
 
 function App() {
   return (
@@ -12,8 +12,8 @@ function App() {
       <Switch>
           <Route path="/" exact component={Home}/>
           <Route path="/landing" component={Landing} />
-          <Route path="/signin" />
-          <Route path="/signup" />
+          <Route path="/signin" component={SignIn}/>
+          <Route path="/signup" component={SignUp} />
       </Switch>
 
     </Router>
