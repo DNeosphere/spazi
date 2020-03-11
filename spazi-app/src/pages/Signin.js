@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import { Link, Redirect} from "react-router-dom";
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 import "../styles/forms.css";
 import "./../styles/base.css";
 import "./../styles/flexbox.css";
 
-import { Footer, Header } from "../components/";
+import { Footer, Header, LogoWhite } from "../components/";
 
+const MySwal = withReactContent(Swal);
 class SignIn extends Component {
   constructor() {
     super();
@@ -54,7 +57,10 @@ class SignIn extends Component {
           this.setState({redirect: true})
           alert('Let the fun begin')
         } else {
-          alert('Not a valid Email or Password')
+          MySwal.fire({
+            icon: 'Check again :)',
+            title: "Not a valid e-mail or password"
+          })
         }
       })
     } catch (error) {
@@ -66,10 +72,11 @@ class SignIn extends Component {
 
   render() {
     if (this.state.redirect === true) {
-      return <Redirect to='/' />
+      return <Redirect to='/'  />
     }
     return (
       <div className="form-container">
+        <LogoWhite />
         <form
           onSubmit={this.handleSubmit}
           className="FormFields"

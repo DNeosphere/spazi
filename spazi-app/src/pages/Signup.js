@@ -4,6 +4,8 @@ import { Redirect } from 'react-router-dom'
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
+import { LogoWhite } from "../components/";
+
 import '../styles/forms.css';
 import "./../styles/base.css";
 import "./../styles/flexbox.css";
@@ -119,6 +121,7 @@ class SignUp extends Component {
     }
         return (
             <div className='form-container'>
+            <LogoWhite />
             <form onSubmit={this.handleSubmit} className="FormFields">
               <div className="FormField">
                 <label className="FormField__Label" htmlFor="name">Full Name</label>
