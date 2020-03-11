@@ -41,7 +41,7 @@ exports.loginUser = function(req, res) {
               expiresIn: '3h'
             });
             res.cookie('token', token, { httpOnly: true })
-              .sendStatus(200);
+              .sendStatus(200).json({ status: 'OK', message: 'Logged in'});
           }
         });
       }
