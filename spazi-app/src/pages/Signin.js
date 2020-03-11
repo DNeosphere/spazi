@@ -45,9 +45,10 @@ class SignIn extends Component {
         body: JSON.stringify(data) // body data type must match "Content-Type" header
       });
       if (response.status === 200) {
+          this.props.history.push('/');
           console.log(response.status)
       } else {
-        alert('Not a valid email or password')
+        alert('Not valid email or password')
       }
       return await response.json().catch(err => console.log(err.meessage))
     }
