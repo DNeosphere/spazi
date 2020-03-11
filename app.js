@@ -50,7 +50,7 @@ app.get('/api/status', function(req, res) {
   res.json({status : 'OK'});
 });
 
-app.get('/api/checkToken', withAuth, function(req, res) {
+app.get('/api/checktoken', withAuth, function(req, res) {
   res.sendStatus(200).json({status: 'OK', message: 'Token authenticated'});
 });
 
