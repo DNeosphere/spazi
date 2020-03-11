@@ -1,12 +1,14 @@
 const express = require("express"),
     app = express(),
     bodyParser  = require("body-parser"),
+    cookieParser = require("cookie-parser"),
     methodOverride = require("method-override");
     mongoose = require('mongoose');
     require('./models/user');
     require('./models/register');
     require('./models/subject');
     require('./models/spazi');
+    withAuth = require('./util/auth.js');
     routeUser = require('./routes/userRoutes');
     routeRegister = require('./routes/registerRoutes');
     routeSubject = require('./routes/subjectRoutes');
@@ -27,6 +29,11 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(methodOverride());
+app.use(cookieParser());
+
+// Adding authentication middleware
+
+
 
 // Adding routes
 
@@ -41,6 +48,10 @@ app.use('/api', routeLogin);
 
 app.get('/api/status', function(req, res) {
   res.json({status : 'OK'});
+});
+
+app.get('/api/checkToken', withAuth, function(req, res) {
+  res.sendStatus(200).json({status: 'OK', message: 'Token authenticated'});
 });
 
 
