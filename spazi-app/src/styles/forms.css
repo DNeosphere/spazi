@@ -1,10 +1,10 @@
 .form-container {
-  background-color: #2e4158;
+  background-color: #081826;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 5% ;
-  height: 100vh;
+  min-height: 100vh;
 }
 .PageSwitcher {
   display: flex;
