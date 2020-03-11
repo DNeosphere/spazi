@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect} from "react-router-dom";
 
 import "../styles/forms.css";
 import "./../styles/base.css";
@@ -13,7 +13,8 @@ class SignIn extends Component {
 
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      redirect : false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -44,16 +45,18 @@ class SignIn extends Component {
           },
         body: JSON.stringify(data) // body data type must match "Content-Type" header
       });
-      if (response.status === 200) {
-          this.props.history.push('/');
-          console.log(response.status)
-      } else {
-        alert('Not valid email or password')
-      }
       return await response.json().catch(err => console.log(err.meessage))
     }
     try {
-      const resp = postData(url, data)
+      postData(url, data)
+      .then((resp) => {
+        if (resp.status === 'OK') {
+          this.setState({redirect: true})
+          alert('Let the fun begin')
+        } else {
+          alert('Not a valid Email or Password')
+        }
+      })
     } catch (error) {
       alert('Something went wrong')
                 console.log(error.message)
@@ -62,6 +65,9 @@ class SignIn extends Component {
   }
 
   render() {
+    if (this.state.redirect === true) {
+      return <Redirect to='/' />
+    }
     return (
       <div className="form-container">
         <form
