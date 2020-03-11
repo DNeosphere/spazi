@@ -36,7 +36,7 @@ exports.loginUser = function(req, res) {
             });
           } else {
             // Issue token
-            const payload = { id: user._id, email };
+            const payload = { id: user._id};
             const token = jwt.sign(payload, secret, {
               expiresIn: '3h'
             });
