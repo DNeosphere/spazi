@@ -1,10 +1,10 @@
 .form-container {
-  background-color: #2e4158;
+  background-color: #081826;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 5% ;
-  height: 100vh;
+  min-height: 100vh;
 }
 .PageSwitcher {
   display: flex;
@@ -25,7 +25,7 @@
 }
 
 .PageSwitcher__Item--Active {
-  background-color: #5ed0c0;
+  background-color: #17AEBF;
   color: white;
 }
 
@@ -63,7 +63,7 @@
 
 .FormTitle__Link--Active {
   color: white;
-  border-bottom: 1px solid #199087;
+  border-bottom: 1px solid #17AEBF;
 }
 
 .FormField {
@@ -94,7 +94,7 @@
 }
 
 .FormField__Button {
-  background-color: #52c4b9;
+  background-color: #17AEBF;
   color: white;
   border: none;
   outline: none;
