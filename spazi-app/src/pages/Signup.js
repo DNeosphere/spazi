@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom'
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 import '../styles/forms.css';
 import "./../styles/base.css";
 import "./../styles/flexbox.css";
+
+const MySwal = withReactContent(Swal);
 class SignUp extends Component {
     constructor() {
         super();
@@ -12,7 +17,9 @@ class SignUp extends Component {
             email: '',
             password: '',
             name: '',
-            hasAgreed: false
+            confirm: '',
+            hasAgreed: false,
+            redirect: false
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -33,67 +40,106 @@ class SignUp extends Component {
         const emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         event.preventDefault();
 
-        if (this.state.email === '') {
-            alert('Please enter an Email')
-        } else if (emailPattern.test(this.state.email)){
-            const url = 'https://spazi.rocks/api/users'
-            let data = {
-                email: this.state.email,
-                password: this.state.password,
-                name: this.state.name
-            }
+        if (this.state.confirm !== this.state.password){
+          MySwal.fire({
+            icon: 'error',
+            title: "Password doesn't match"
+          })
+          this.setState( {password: '', confirm: ''} );
+          } else {
+          if (emailPattern.test(this.state.email)){
+              const url = 'https://spazi.rocks/api/users';
+              const  data = {
+                  email: this.state.email,
+                  password: this.state.password,
+                  name: this.state.name
+              };
 
-            async function postData(url = '', data = {}) {
-                // Default options are marked with *
-                const response = await fetch(url, {
-                  method: 'POST', // *GET, POST, PUT, DELETE, etc.
-                  //mode: 'no-cors',
-                    headers: {
-                    'Content-Type': 'application/json'
-                    },
-                  body: JSON.stringify(data) // body data type must match "Content-Type" header
-                });
-                if (response.status === 200) {
-                    alert('User created succesfully')
-                }
-                return await response.json().catch(err => console.log(err.meessage)) // parses JSON response into native JavaScript objects
-            }
-            try{
-                const resp = postData(url, data)
+              async function postData(url = '', data = {}) {
+                  // Default options are marked with *
+                  const response = await fetch(url, {
+                    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                    //mode: 'no-cors',
+                      headers: {
+                      'Content-Type': 'application/json'
+                      },
+                    body: JSON.stringify(data) // body data type must match "Content-Type" header
+                  });
+                  /*if (response.status === 200) {
+                      MySwal.fire({
+                        icon: 'success',
+                        title: 'The user has been created',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                      
+                  }*/
+                  return await response.json().catch(err => console.log(err.meessage)) // parses JSON response into native JavaScript objects
+              }
+              try{
+                  postData(url, data).then( resp => {
+                    if (resp.status === "OK"){
+                      MySwal.fire({
+                        icon: 'success',
+                        title: 'The user has been created',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                    this.setState({ redirect: true});
+                    }
+                  })
+                  //console.log(resp)
+                  //this.setState({ redirect: true});
+                  console.log('The form was submitted with the following data:');
+                  console.log(this.state);
 
-            } catch (err){
-                alert('Something went wrong')
-                console.log(err.message)
-            }
-        } else {
-            alert('Invalid email, check again :)')
+              } catch (err){
+                MySwal.fire({
+                  icon: 'error',
+                  title: 'Oops...',
+                  text: 'Something went wrong!'
+                })
+                  console.log(err.message)
+              }
+          } else {
+            MySwal.fire({
+              title: 'Hi, dude!',
+              text: 'Invalid email, check it again :)'
+            })
+          }
+
         }
-        //this.setState( {email: ''} )
 
-        console.log('The form was submitted with the following data:');
-        console.log(this.state);
+
     }
 
     render() {
+      if (this.state.redirect === true) {
+        return <Redirect to="/signin" />
+    }
         return (
             <div className='form-container'>
             <form onSubmit={this.handleSubmit} className="FormFields">
               <div className="FormField">
                 <label className="FormField__Label" htmlFor="name">Full Name</label>
-                <input type="text" id="name" className="FormField__Input" placeholder="Enter your full name" name="name" value={this.state.name} onChange={this.handleChange} />
+                <input type="text" id="name" className="FormField__Input" placeholder="Enter your full name" name="name" value={this.state.name} onChange={this.handleChange} required="required" />
               </div>
               <div className="FormField">
                 <label className="FormField__Label" htmlFor="password">Password</label>
-                <input type="password" id="password" className="FormField__Input" placeholder="Enter your password" name="password" value={this.state.password} onChange={this.handleChange} />
+                <input type="password" id="password" className="FormField__Input" placeholder="Enter your password" name="password" value={this.state.password} onChange={this.handleChange} required="required"/>
+              </div>
+              <div className="FormField">
+                <label className="FormField__Label" htmlFor="password">Password</label>
+                <input type="password" id="confirm" className="FormField__Input" placeholder="Confirm your password" name="confirm" value={this.state.confirm} onChange={this.handleChange} required="required" />
               </div>
               <div className="FormField">
                 <label className="FormField__Label" htmlFor="email">E-Mail Address</label>
-                <input type="email" id="email" className="FormField__Input" placeholder="Enter your email" name="email" value={this.state.email} onChange={this.handleChange} />
+                <input type="email" id="email" className="FormField__Input" placeholder="Enter your email" name="email" value={this.state.email} onChange={this.handleChange} required="required"/>
               </div>
 
               <div className="FormField">
                 <label className="FormField__CheckboxLabel">
-                    <input className="FormField__Checkbox" type="checkbox" name="hasAgreed" value={this.state.hasAgreed} onChange={this.handleChange} /> I agree all statements in <a href="" className="FormField__TermsLink">terms of service</a>
+                    <input className="FormField__Checkbox" type="checkbox" name="hasAgreed" value={this.state.hasAgreed} onChange={this.handleChange} required="required"/> I agree all statements in <a href="" className="FormField__TermsLink">terms of service</a>
                 </label>
               </div>
 
@@ -104,6 +150,6 @@ class SignUp extends Component {
           </div>
         );
     }
-}
+  }
 
 export default SignUp;
