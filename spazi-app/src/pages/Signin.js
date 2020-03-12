@@ -1,19 +1,23 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect} from "react-router-dom";
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 import "../styles/forms.css";
 import "./../styles/base.css";
 import "./../styles/flexbox.css";
 
-import { Footer, Header } from "../components/";
+import { Footer, Header, LogoWhite } from "../components/";
 
+const MySwal = withReactContent(Swal);
 class SignIn extends Component {
   constructor() {
     super();
 
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      redirect : false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -44,16 +48,21 @@ class SignIn extends Component {
           },
         body: JSON.stringify(data) // body data type must match "Content-Type" header
       });
-      if (response.status === 200) {
-          this.props.history.push('/');
-          console.log(response.status)
-      } else {
-        alert('Not valid email or password')
-      }
       return await response.json().catch(err => console.log(err.meessage))
     }
     try {
-      const resp = postData(url, data)
+      postData(url, data)
+      .then((resp) => {
+        if (resp.status === 'OK') {
+          this.setState({redirect: true})
+          alert('Let the fun begin')
+        } else {
+          MySwal.fire({
+            icon: 'Check again :)',
+            title: "Not a valid e-mail or password"
+          })
+        }
+      })
     } catch (error) {
       alert('Something went wrong')
                 console.log(error.message)
@@ -62,8 +71,12 @@ class SignIn extends Component {
   }
 
   render() {
+    if (this.state.redirect === true) {
+      return <Redirect to='/'  />
+    }
     return (
       <div className="form-container">
+        <LogoWhite />
         <form
           onSubmit={this.handleSubmit}
           className="FormFields"
