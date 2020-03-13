@@ -4,14 +4,14 @@ import { Redirect } from 'react-router-dom'
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
-import { LogoWhite } from "../components/";
+import { LogoWhite } from "../components";
 
 import '../styles/forms.css';
 import "./../styles/base.css";
 import "./../styles/flexbox.css";
 
 const MySwal = withReactContent(Swal);
-class SignUp extends Component {
+class SignUpSpazi extends Component {
     constructor() {
         super();
 
@@ -50,7 +50,7 @@ class SignUp extends Component {
           this.setState( {password: '', confirm: ''} );
           } else {
           if (emailPattern.test(this.state.email)){
-              const url = 'https://spazi.rocks/api/users';
+              const url = 'https://spazi.rocks/api/spazis';
               const  data = {
                   email: this.state.email,
                   password: this.state.password,
@@ -67,7 +67,6 @@ class SignUp extends Component {
                       },
                     body: JSON.stringify(data) // body data type must match "Content-Type" header
                   });
-
                   return await response.json().catch(err => console.log(err.meessage)) // parses JSON response into native JavaScript objects
               }
               try{
@@ -114,8 +113,8 @@ class SignUp extends Component {
             <LogoWhite />
             <form onSubmit={this.handleSubmit} className="FormFields">
             <div className="PageSwitcher">
-                <Link to="/signupspazi" className="PageSwitcher__Item">Spazi</Link>
-                <Link to="/signup" className="PageSwitcher__Item PageSwitcher__Item--Active">User</Link>
+                <Link to="/signupspazi" className="PageSwitcher__Item PageSwitcher__Item--Active">Spazi</Link>
+                <Link to="/signup" className="PageSwitcher__Item">User</Link>
               </div>
               <div className="FormField">
                 <label className="FormField__Label" htmlFor="name">Full Name</label>
@@ -149,4 +148,4 @@ class SignUp extends Component {
     }
   }
 
-export default SignUp;
+export default SignUpSpazi;
