@@ -1,6 +1,7 @@
 .form-container {
   background-color: #081826;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 5% ;
@@ -129,4 +130,16 @@
   display: inline-block;
   padding-bottom: 2px;
   margin-left: 5px;
+}
+
+/* ================================= 
+  Media Queries
+==================================== */
+
+/* Desktop */
+
+@media (min-width: 1025px) {
+  .form-container {
+    flex-direction: row;
+  }
 }
