@@ -32,10 +32,33 @@
 
 }
 
+.nav-bar-item {
+    border-radius: 3px;
+    opacity: 1;
+	transition: 0.3s;
+}
+
+.nav-bar-item:hover {
+    background-color: aquamarine;
+    color: black;
+}
+
+.nav-bar-session {
+    border-top: 2px solid rgba(20,138,164,0.15);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    min-height: 30vh;
+    padding: 5vh;
+}
 .link-users {
     color: #FFF;
   }
-  .link-users:hover {
-     color: #17AEBF;
-  }
 
+.link-users:hover {
+    color: #17AEBF;
+}
+
+.spazi-icon {
+    background-image: url('../../imagesSpazi/veterinary.png');
+}
