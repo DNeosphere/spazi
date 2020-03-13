@@ -15,8 +15,8 @@ function App() {
           <Route path="/signin" component={SignIn}/>
           <Route path="/signup" component={SignUp} />
           <Route path="/signupspazi" component={SignUpSpazi} />
+          <Route path="/users" />
       </Switch>
-
     </Router>
   );
 }
