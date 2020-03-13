@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const User  = mongoose.model('User');
+const Spazi  = mongoose.model('Spazi');
 const jwt = require('jsonwebtoken');
 
 const secret = process.env.SPAZI_JWT_SECRET;
@@ -36,12 +37,12 @@ exports.loginUser = function(req, res) {
             });
           } else {
             // Issue token
-            const payload = { id: user._id};
+            const payload = { id: user._id, type_user: 'user'};
             const token = jwt.sign(payload, secret, {
               expiresIn: '3h'
             });
             res.cookie('token', token, { httpOnly: true })
-              .sendStatus(200).json({ status: 'OK', message: 'Logged in'});
+              .status(200).json({ status: 'OK', message: 'Logged in'});
           }
         });
       }
