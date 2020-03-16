@@ -7,7 +7,7 @@ import "../styles/forms.css";
 import "./Users.css"
 import "./../styles/base.css";
 import "./../styles/flexbox.css";
-import { Sidebar, Results } from "../components";
+import { Sidebar, Results, Footer } from "../components";
 
 class Users extends Component {
     constructor () {
@@ -17,17 +17,20 @@ class Users extends Component {
 
     render () {
         return (
-            <div className="users-main-container" style={{display: "flex"
-            }}>
-                <Sidebar />
-                <div className="results-list">
-                    <Results />
-                    <Results />
-                    <Results />
-                    <Results /> 
+            <div>
+                <div className="users-main-container" style={{display: "flex"
+                }}>
+                    <Sidebar />
+                    <div className="results-list">
+                        <Results />
+                        <Results />
+                        <Results />
+                        <Results /> 
+                    </div>
                 </div>
-              
+                <Footer />
             </div>
+           
         )
     }
 }

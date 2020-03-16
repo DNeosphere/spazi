@@ -1,0 +1,6 @@
+users-main-container {
+    min-width: 100vh;
+    background-color: red;
+    display: flex;
+    flex-direction: row;
+}
