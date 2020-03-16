@@ -7,7 +7,7 @@ import "../styles/forms.css";
 import "./Users.css"
 import "./../styles/base.css";
 import "./../styles/flexbox.css";
-import { Sidebar, Results, Footer } from "../components";
+import { Sidebar, Results, Footer, Search } from "../components";
 
 class Users extends Component {
     constructor () {
@@ -22,6 +22,7 @@ class Users extends Component {
                 }}>
                     <Sidebar />
                     <div className="results-list">
+                        <Search />
                         <Results />
                         <Results />
                         <Results />

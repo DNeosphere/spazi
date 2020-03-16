@@ -1,0 +1,24 @@
+.search-form {
+    display: flex;
+    justify-content: space-around;
+}
+
+.submit-btn {
+	background-color: #131A40;
+	color: white;
+	border-radius: 3px;
+	font-size: 1.30em;
+	width: 250px;
+	height: 100%;
+	opacity: 1;
+	transition: 0.3s;
+	border-color: transparent;
+}
+
+.submit-btn:hover {
+	background-color: #355B8C;
+}
+
+.search-container {
+    border-bottom: 2px solid rgba(20,138,164,0.15);
+}

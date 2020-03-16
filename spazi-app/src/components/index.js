@@ -9,3 +9,4 @@ export { default as LogoWhite} from './logo-white/logo-white.js';
 export { default as Sidebar} from './Sidebar/Sidebar.js';
 export { default as Results} from './Results/Results.js';
 export { default as Modal} from './Modal/Modal.js';
+export { default as Search} from './Search/Search.js';
