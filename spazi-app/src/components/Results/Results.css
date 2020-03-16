@@ -1,0 +1,25 @@
+.results-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 30vh;
+    min-width: 100%;
+    padding: 5vh;
+}
+
+.results-list {
+    width: 100%;
+}
+
+.users-contact-btn {
+	background-color: #131A40;
+	color: white;
+	border-radius: 3px;
+    font-size: 1em;
+	width: 250px;
+	height: 35%;
+	opacity: 1;
+	transition: 0.3s;
+	border-color: transparent;
+
+}

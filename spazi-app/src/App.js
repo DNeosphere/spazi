@@ -6,6 +6,7 @@ import "./styles/flexbox.css";
 
 import { Landing, Home, SignIn, SignUp, SignUpSpazi, Users } from "./pages";
 
+
 function App() {
   return (
     <Router>
@@ -16,7 +17,7 @@ function App() {
           <Route path="/signup" component={SignUp} />
           <Route path="/signupspazi" component={SignUpSpazi} />
           <Route path="/users" component={Users}/>
-          <Route path="/find-spazis"  />
+          <Route path="/find-spazis" />
           <Route path="/history"  />
           <Route path="/profile"  />
 
