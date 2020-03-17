@@ -20,7 +20,7 @@ class AuthComponent extends Component {
     async getData() {
         const url = 'https://spazi.rocks/api/users/me';
         const response = await fetch(url);
-        console.log("Response AuthComp  --- ", response);
+        this.setState({ status: response.status });
         let data = await response.json();
         return data;
     }
@@ -35,9 +35,10 @@ class AuthComponent extends Component {
             );
         }
 
-        if (user === null) {
+        if (this.state.status === 401) {
             this.props.history.push('/login');
         }
+
 
         return this.props.children;
     }
