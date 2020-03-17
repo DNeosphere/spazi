@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
+import "./AuthComponent.css"
 
 
 class AuthComponent extends Component {
@@ -26,24 +27,23 @@ class AuthComponent extends Component {
     }
 
     render() {
-        const { user } = this.state;
-        if (user === undefined) {
+        if (this.state.status === undefined) {
             return (
                 <div>
-                    Loading...
+                    <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
                 </div>
-            );
-        }
-
+                    );
+                }
+        
         if (this.state.status === 401) {
-            this.props.history.push('/login');
+                        this.props.history.push('/signin');
+                }
+        
+        
+                return this.props.children;
+            }
+        
+        
         }
-
-
-        return this.props.children;
-    }
-
-
-}
-
+        
 export default withRouter(AuthComponent);
