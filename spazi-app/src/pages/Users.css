@@ -4,3 +4,8 @@ users-main-container {
     display: flex;
     flex-direction: row;
 }
+
+.dogIcon {
+    min-width: 8vh;
+    background-image: url(../imagesSpazi/woman.png);
+}

@@ -1,7 +1,7 @@
 .nav-bar-container {
     display: flex;
     flex-direction: column;
-    max-width: 35vh;
+    max-width: 40vh;
     min-height: 100vh;
     background-color: #081826;
     color: white;
@@ -25,22 +25,11 @@
 
 .nav-bar-list {
     display: flex;
-    flex-direction: column;
     justify-content: space-around;
+    flex-direction: column;
     min-height: 30vh;
-    padding: 5vh;
 
-}
 
-.nav-bar-item {
-    border-radius: 3px;
-    opacity: 1;
-	transition: 0.3s;
-}
-
-.nav-bar-item:hover {
-    background-color: aquamarine;
-    color: black;
 }
 
 .nav-bar-session {
@@ -49,14 +38,21 @@
     flex-direction: column;
     justify-content: space-around;
     min-height: 30vh;
-    padding: 5vh;
 }
 .link-users {
     color: #FFF;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 8vh;
+    height: 8vh;
+    opacity: 1;
+    transition: 0.3s;
+    border-radius: 3px;
   }
 
 .link-users:hover {
-    color: #17AEBF;
+    background-color: aquamarine;
+    color: black;
 }
 
 .spazi-icon {

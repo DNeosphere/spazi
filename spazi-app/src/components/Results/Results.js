@@ -16,14 +16,16 @@ class Results extends Component {
       isOpen: !this.state.isOpen
     });
   }
-
+  
   render() {
     return (
       <div>
         <div className="results-container">
-          <div className="results-img"> </div>
+          <div className="results-img">
+            <img src={this.props.spazi.imageUrl}></img> 
+           </div>
           <p className="spazi-description">
-            Name: <br /> Specialized:{" "}
+            Name: {this.props.spazi.name}<br /> Specialized: {this.props.spazi.specialization}
           </p>
           <button className="users-contact-btn" onClick={this.toggleModal} >
             Contact

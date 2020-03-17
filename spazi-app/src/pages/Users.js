@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Link, Redirect} from "react-router-dom";
+import React, { useState } from "react";
+import { Link, Redirect } from "react-router-dom";
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
@@ -9,31 +9,64 @@ import "./../styles/base.css";
 import "./../styles/flexbox.css";
 import { Sidebar, Results, Footer, Search } from "../components";
 
-class Users extends Component {
-    constructor () {
-        super()
+function Users() {
+    let [dog, cat, plant] = useState("")
+    let [response, setResponse] = useState([])
+
+
+    const handleChange = (e) => {
+        let target = e.target;
+        let value = target.type === 'checkbox' ? target.checked : target.value;
     }
 
+    const handleSubmit = async e => {
+        e.preventDefault();
 
-    render () {
-        return (
-            <div>
-                <div className="users-main-container" style={{display: "flex"
-                }}>
-                    <Sidebar />
-                    <div className="results-list">
-                        <Search />
-                        <Results />
-                        <Results />
-                        <Results />
-                        <Results /> 
+        const url = 'https://spazi.rocks/api/spazis';
+        /*const data = {
+            dog: this.state.dog,
+            cat: this.state.cat,
+            plant: this.state.plant
+        };*/
+
+        // Default options are marked with *
+        async function getData() {
+            const response = await fetch(url);
+            const data = await response.json();
+            return data;
+        }
+
+        const data = await getData().then(resp => setResponse(resp));
+
+
+    }
+    const resultComponent = response.map(item => <Results key={item.id} spazi={item}/>)
+    return (
+        <div>
+            <div className="users-main-container" style={{
+                display: "flex"
+            }}>
+                <Sidebar />
+                <div className="results-list">
+                    <div className="search-container">
+                        <form className='search-form' onSubmit={handleSubmit}>
+                            <input className='check-form--input' type='checkbox' id='dog' value={dog} onChange={handleChange} />
+                            <img src="../imagesSpazi/woman.png" ></img>
+                            <input className='check-form--input' type='checkbox' id='cat' value={cat} onChange={handleChange} />
+                            <label for="cat"> Cat</label><br></br>
+                            <input className='check-form--input' type='checkbox' id='plant' value={plant} onChange={handleChange} />
+                            <label for="plant"> Plant</label><br></br>
+
+                            <input className='check-form--button submit-btn' type="submit" value="Search" />
+                        </form>
                     </div>
+                    {resultComponent}
                 </div>
-                <Footer />
             </div>
-           
-        )
-    }
+            <Footer />
+        </div>
+
+    )
 }
 
 

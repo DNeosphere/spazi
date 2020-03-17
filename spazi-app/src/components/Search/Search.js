@@ -55,7 +55,7 @@ class Search extends Component {
             <div className="search-container">
                 <form className='search-form' onSubmit={this.handleSubmit}>
                     <input className='check-form--input' type='checkbox' id='dog' value={this.state.dog} onChange={this.handleChange}/>
-                    <label for="dog"> Dog</label><br></br>
+                    <div className="dogIcon" style={{backgroundImage: `url(../../imagesSpazi/woman.png})` }}></div>
                     <input className='check-form--input' type='checkbox' id='cat' value={this.state.cat} onChange={this.handleChange}/>
                     <label for="cat"> Cat</label><br></br>
                     <input className='check-form--input' type='checkbox' id='plant' value={this.state.plant} onChange={this.handleChange}/>
