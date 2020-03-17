@@ -6,14 +6,21 @@ import "./Sidebar.css"
 import LogoWhite from "../logo-white/logo-white";
 
 class Sidebar extends Component {
+    constructor(){
+        super();
+        this.state= {
+            userName: localStorage.getItem('user-name')
+        }
+    }
 
     render() {
+        console.log("USER NAME ----- ",localStorage.getItem('user-name'))
         return (
             <div className="nav-bar-container">
                 <nav className="nav-bar">
                     <div className='nav-bar-img-container'>
                         <div className='user-img'>
-                            <h3 className='user-name'>{localStorage.getItem('user-name')}</h3>
+                            <h3 className='user-name'>{this.state.userName}</h3>
                         </div>
 
                     </div>
