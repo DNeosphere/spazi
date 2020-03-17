@@ -5,7 +5,12 @@ users-main-container {
     flex-direction: row;
 }
 
-.dogIcon {
-    min-width: 8vh;
-    background-image: url(../imagesSpazi/woman.png);
+
+.select-form--input {
+    font-family: 'Varela Round', sans-serif;
+
+}
+
+.select-form--option{
+    cursor: pointer;
 }
