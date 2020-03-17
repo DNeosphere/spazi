@@ -47,10 +47,12 @@ exports.createSpazi = async function(req, res){
   billing: req.body.billing,
   reviews: req.body.reviews,
   specialization: req.body.specialization
-}).catch(error => {
-  return res.status(500).json({status: 'error',
-   message: `[Error 500]: ${error.message}`});
-});
+  })
+  
+//   spazi.catch(error => {
+//     return res.status(500).json({status: 'error',
+//     message: `[Error 500]: ${error.message}`});
+// });
 
   console.log('POST/spazis/');
   spazi.save(function (err){
