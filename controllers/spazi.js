@@ -16,6 +16,23 @@ exports.findSpaziByID = async function (req, res){
     res.status(200).json(spazi);
 };
 
+//GET - All spazis by criteria
+exports.findSpazisByCriteria = async function (req, res){
+  const resultsPerPage = 8;
+  const page = req.params.page || 1;
+
+  try {
+    const spazis = await Spazi.find()
+    .skip((resultsPerPage * page) - resultsPerPage)
+    .limit(resultsPerPage);
+    
+    res.status(200).json(spazis);
+  } catch(error) {
+    res.status(500).json({status: 'error', message: `[Error 500]: ${error.message}`});
+  }
+
+};
+
 //POST - Create a Spazi
 exports.createSpazi = async function(req, res){
 
@@ -23,17 +40,23 @@ exports.createSpazi = async function(req, res){
   name: req.body.name,
   age: req.body.age,
   documentId: req.body.documentId,
+  password: req.body.password,
+  email: req.body.email,
+  imageUrl: req.body.imageUrl,
   contact: req.body.contact,
   billing: req.body.billing,
   reviews: req.body.reviews,
   specialization: req.body.specialization
+}).catch(error => {
+  return res.status(500).json({status: 'error',
+   message: `[Error 500]: ${error.message}`});
 });
 
   console.log('POST/spazis/');
   spazi.save(function (err){
     if(err) res.status(500).send(err.message);
     
-    res.status(200).json(spazi);
+    res.status(200).json({status: 'OK', message: `Spazi ${spazi.name} created`});
   });
 };
 
