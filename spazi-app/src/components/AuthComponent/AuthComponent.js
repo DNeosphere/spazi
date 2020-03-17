@@ -23,7 +23,8 @@ class AuthComponent extends Component {
         const response = await fetch(url);
         this.setState({ status: response.status });
         let data = await response.json();
-        localStorage.setItem("user-data", data);
+        localStorage.setItem("user-name", data.name);
+        localStorage.setItem("user-id", data.id);
         return data;
     }
 
