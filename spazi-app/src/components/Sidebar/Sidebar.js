@@ -7,24 +7,26 @@ import LogoWhite from "../logo-white/logo-white";
 
 class Sidebar extends Component {
 
-    render () {
+    render() {
+        const data = localStorage.getItem('user-data');
+        console.log("DATA--- SideBar", data);
         return (
             <div className="nav-bar-container">
                 <nav className="nav-bar">
                     <div className='nav-bar-img-container'>
                         <div className='user-img'>
-                        <h3 className='user-name'>Carlos Gay</h3>
+                            <h3 className='user-name'>{data.name}</h3>
                         </div>
-              
+
                     </div>
                     <ul className="nav-bar-list">
-                    <Link className="link-users" to='/find-spazi'> <li className="nav-bar-item"><i className="spazi-icon"></i>Spazis</li> </Link>
-                    <Link className="link-users" to='/history'><li className="nav-bar-item"><i className="history-icon" ></i>History</li></Link>
-                    <Link className="link-users" to='/profile'><li className="nav-bar-item"><i className="profile-icon"></i>Configuration</li></Link>
+                        <Link className="link-users" to='/find-spazi'> <li className="nav-bar-item"><i className="spazi-icon"></i>Spazis</li> </Link>
+                        <Link className="link-users" to='/history'><li className="nav-bar-item"><i className="history-icon" ></i>History</li></Link>
+                        <Link className="link-users" to='/profile'><li className="nav-bar-item"><i className="profile-icon"></i>Configuration</li></Link>
                     </ul>
                     <ul className="nav-bar-session">
-                    <Link className="link-users" to='#'> <li className="nav-bar-item"><i className="logout-icon"></i>log out</li> </Link>
-                    <Link className="link-users" to='#'><li className="nav-bar-item"><i className="aboutus-icon" ></i>About us</li></Link>
+                        <Link className="link-users" to='#'> <li className="nav-bar-item"><i className="logout-icon"></i>log out</li> </Link>
+                        <Link className="link-users" to='#'><li className="nav-bar-item"><i className="aboutus-icon" ></i>About us</li></Link>
                     </ul>
                     <LogoWhite className='logo-white' />
                 </nav>
