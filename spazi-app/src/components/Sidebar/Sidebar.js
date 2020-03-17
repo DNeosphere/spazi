@@ -9,8 +9,12 @@ class Sidebar extends Component {
     constructor(){
         super();
         this.state= {
-            userName: localStorage.getItem('user-name')
+            userName: ""
         }
+        
+    }
+    componentDidMount() {
+        this.setState({ userName: localStorage.getItem('user-name') })
     }
 
     render() {
