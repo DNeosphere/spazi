@@ -1,0 +1,60 @@
+.nav-bar-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 40vh;
+    min-height: 100vh;
+    background-color: #081826;
+    color: white;
+    align-items: center;
+
+}
+
+.user-img {
+    display: flex;
+    min-height: 30vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(../../imagesSpazi/pexels-photo-96938.jpeg);
+    justify-content: center;
+    opacity: 0.8;
+}
+.user-name {
+    color: white;
+    font-size: 4vh;
+}
+
+.nav-bar-list {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    min-height: 30vh;
+
+
+}
+
+.nav-bar-session {
+    border-top: 2px solid rgba(20,138,164,0.15);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    min-height: 30vh;
+}
+.link-users {
+    color: #FFF;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 8vh;
+    height: 8vh;
+    opacity: 1;
+    transition: 0.3s;
+    border-radius: 3px;
+  }
+
+.link-users:hover {
+    background-color: aquamarine;
+    color: black;
+}
+
+.spazi-icon {
+    background-image: url('../../imagesSpazi/veterinary.png');
+}

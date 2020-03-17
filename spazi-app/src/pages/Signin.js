@@ -48,14 +48,14 @@ class SignIn extends Component {
           },
         body: JSON.stringify(data) // body data type must match "Content-Type" header
       });
-      return await response.json().catch(err => console.log(err.meessage))
+      /* return await response.json().catch(err => console.log(err.meessage)) */
+      return response
     }
     try {
       postData(url, data)
       .then((resp) => {
-        if (resp.status === 'OK') {
+        if (resp.status === 200) {
           this.setState({redirect: true})
-          alert('Let the fun begin')
         } else {
           MySwal.fire({
             icon: 'Check again :)',
@@ -72,7 +72,7 @@ class SignIn extends Component {
 
   render() {
     if (this.state.redirect === true) {
-      return <Redirect to='/'  />
+      return <Redirect to='/users'  />
     }
     return (
       <div className="form-container">

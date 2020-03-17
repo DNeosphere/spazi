@@ -1,0 +1,16 @@
+users-main-container {
+    min-width: 100vh;
+    background-color: red;
+    display: flex;
+    flex-direction: row;
+}
+
+
+.select-form--input {
+    font-family: 'Varela Round', sans-serif;
+
+}
+
+.select-form--option{
+    cursor: pointer;
+}

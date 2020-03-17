@@ -67,15 +67,7 @@ class SignUp extends Component {
                       },
                     body: JSON.stringify(data) // body data type must match "Content-Type" header
                   });
-                  /*if (response.status === 200) {
-                      MySwal.fire({
-                        icon: 'success',
-                        title: 'The user has been created',
-                        showConfirmButton: false,
-                        timer: 1500
-                      })
-                      
-                  }*/
+
                   return await response.json().catch(err => console.log(err.meessage)) // parses JSON response into native JavaScript objects
               }
               try{
@@ -90,8 +82,6 @@ class SignUp extends Component {
                     this.setState({ redirect: true});
                     }
                   })
-                  //console.log(resp)
-                  //this.setState({ redirect: true});
                   console.log('The form was submitted with the following data:');
                   console.log(this.state);
 
@@ -123,6 +113,10 @@ class SignUp extends Component {
             <div className='form-container'>
             <LogoWhite />
             <form onSubmit={this.handleSubmit} className="FormFields">
+            <div className="PageSwitcher">
+                <Link to="/signupspazi" className="PageSwitcher__Item">Spazi</Link>
+                <Link to="/signup" className="PageSwitcher__Item PageSwitcher__Item--Active">User</Link>
+              </div>
               <div className="FormField">
                 <label className="FormField__Label" htmlFor="name">Full Name</label>
                 <input type="text" id="name" className="FormField__Input" placeholder="Enter your full name" name="name" value={this.state.name} onChange={this.handleChange} required="required" />
