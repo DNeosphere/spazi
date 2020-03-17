@@ -16,6 +16,8 @@ class AuthComponent extends Component {
     componentDidMount() {
         this.setState({ user: this.getData() });
         //console.log("DataAuthComp", this.state.user);
+        localStorage.setItem("user-name", this.state.user.name);
+        localStorage.setItem("user-id", this.state.user.id);
     }
 
     async getData() {
@@ -23,8 +25,7 @@ class AuthComponent extends Component {
         const response = await fetch(url);
         this.setState({ status: response.status });
         let data = await response.json();
-        localStorage.setItem("user-name", data.name);
-        localStorage.setItem("user-id", data.id);
+
         return data;
     }
 
