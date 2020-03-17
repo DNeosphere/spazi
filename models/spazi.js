@@ -17,21 +17,29 @@ const billingSchema = new Schema({
   country: { type: String }
 });
 
+const reviewsSchema = new Schema({
+  user_id: { type: String },
+  date: { type: Date },
+  rating: { type: Number },
+  review: { type: String }
+})
+
 
 const spaziSchema = new Schema({
   name: { type: String },
   age: { type: Number },
   email: { type: String, required: true, unique: true},
   password: { type: String, required: true},
+  imageUrl : { type: String },
   documentId: { type: String },
   contact: {type: contactSchema, default: {}},
   billing: {type: billingSchema, default: {}},
-  reviews: { type: String },
+  reviews: [reviewsSchema],
   specialization: { type: String, enum: ['dog', 'cat', 'plant'] }
 }, { timestamps: true});
 
 
-// Hook to User schema to hash passwords
+// Hook to Spazi schema to hash passwords
 
 spaziSchema.pre('save', function(next) {
   // Check if document is new or a new password has been set
@@ -53,7 +61,7 @@ spaziSchema.pre('save', function(next) {
   }
 });
 
-// Method on user schema to compare passwords
+// Method on Spazi schema to compare passwords
 
 spaziSchema.methods.isCorrectPassword = function(password, callback){
   bcrypt.compare(password, this.password, function(err, same) {

@@ -54,13 +54,17 @@ app.get('/api/checktoken', withAuth, function(req, res) {
   res.sendStatus(200).json({status: 'OK', message: 'Token authenticated'});
 });
 
+app.use('/api', function (req, res, next) {
+  res.status(404).json({status: 'error', message: '[Error 404]: Page not found'});
+});
+
 
 // Connect to DB
 mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true }, function(err, res) {
   if(err) {
     console.log('ERROR: connecting to Database. ' + err);
   } else {
-    console.log('DataBase connected ' + res);
+    console.log('Database connected ' + res);
   }
   app.listen(5001, function() {
     console.log("Node server running on http://localhost:5001");
