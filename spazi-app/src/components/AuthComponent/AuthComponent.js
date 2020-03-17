@@ -29,7 +29,7 @@ class AuthComponent extends Component {
     render() {
         if (this.state.status === undefined) {
             return (
-                <div>
+                <div style={{display: "flex", justifyContent:"center", alignItems: "center"}}>
                     <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
                 </div>
                     );
