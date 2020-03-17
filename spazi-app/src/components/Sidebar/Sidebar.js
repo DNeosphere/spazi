@@ -8,14 +8,13 @@ import LogoWhite from "../logo-white/logo-white";
 class Sidebar extends Component {
 
     render() {
-        const data = localStorage.getItem('user-data');
-        console.log("DATA--- SideBar", data);
+        const userName = localStorage.getItem('user-name');
         return (
             <div className="nav-bar-container">
                 <nav className="nav-bar">
                     <div className='nav-bar-img-container'>
                         <div className='user-img'>
-                            <h3 className='user-name'>{data.name}</h3>
+                            <h3 className='user-name'>{userName}</h3>
                         </div>
 
                     </div>
