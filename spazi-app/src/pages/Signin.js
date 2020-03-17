@@ -55,7 +55,7 @@ class SignIn extends Component {
       postData(url, data)
       .then((resp) => {
         if (resp.status === 200) {
-          this.setState({redirect: true})
+          this.props.history.push('/users')
         } else {
           MySwal.fire({
             icon: 'Check again :)',
@@ -71,9 +71,9 @@ class SignIn extends Component {
   }
 
   render() {
-    if (this.state.redirect === true) {
+    /*if (this.state.redirect === true) {
       return <Redirect to='/users'  />
-    }
+    }*/
     return (
       <div className="form-container">
         <LogoWhite />
