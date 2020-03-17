@@ -48,3 +48,9 @@ exports.loginUser = function(req, res) {
       }
     });
   };
+
+
+  exports.logoutUser = function(req, res) {
+    res.clearCookie('token');
+    res.status(200).json({status: 'OK', message: 'Goodbye!'})
+  };
