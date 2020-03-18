@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./styles/base.css";
 import "./styles/flexbox.css";
 
-import { Landing, Home, SignIn, SignUp, SignUpSpazi, Users } from "./pages";
-import AuthComponent from "./components/AuthComponent/AuthComponent";
+import { Landing, Home, SignIn, SignUp, SignUpSpazi, Users, Logout } from "./pages";
+import {AuthComponent} from "./components";
 
 
 function App() {
@@ -17,6 +17,7 @@ function App() {
         <Route path="/signin" component={SignIn} />
         <Route path="/signup" component={SignUp} />
         <Route path="/signupspazi" component={SignUpSpazi} />
+        <Route path="/logout" component={Logout} />
         <AuthComponent>
           <Route path="/users" component={Users} />
           <Route path="/find-spazis" />
