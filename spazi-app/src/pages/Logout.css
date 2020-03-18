@@ -1,0 +1,7 @@
+.container--message {
+    text-align: center;
+    border-top: 2px solid rgba(20,138,164,0.15);
+
+    padding: 9.1em 0;
+}
+
