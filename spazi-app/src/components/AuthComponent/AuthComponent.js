@@ -15,7 +15,10 @@ class AuthComponent extends Component {
     }
 
     componentDidMount() {
-        const response = this.getData().then(resp => this.setState({ name: resp.name, id: resp.id }));
+        const response = this.getData()
+        .then(resp => this.setState({ name: resp.name, id: resp.id }))
+        .then(localStorage.setItem("user-name", this.state.name))
+        .then(localStorage.setItem("user-id", this.state.id));
         //console.log("DataAuthComp", this.state.user);
     }
 
@@ -29,8 +32,7 @@ class AuthComponent extends Component {
     }
 
     render() {
-        localStorage.setItem("user-name", this.state.name);
-        localStorage.setItem("user-id", this.state.id);
+        
         if (this.state.status === undefined) {
             return (
                 <div style={{display: "flex", justifyContent:"center", alignItems: "center"}}>
