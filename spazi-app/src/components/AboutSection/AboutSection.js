@@ -18,7 +18,7 @@ function AboutSection () {
                     is also the portfolio project for Holberton School.
                 </p>
                 <p className='special-p about-p'>
-                    Animal lovers + software enginers = {"<"}3 Spazi! {"<"}3 
+                    Animal lovers + software engineers = {"<"}3 Spazi! {"<"}3 
                 </p>
                 <p>You can find the source code of the App in our <a className="a-about" href="https://github.com/DNeosphere/spazi">Github Repository</a></p>
 
