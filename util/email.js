@@ -19,7 +19,7 @@ function sendEmail(data) {
     };
     console.log(msg);
 
-    sgMail.send(msg);
+    sgMail.send(msg).catch(error => console.log(error));
 
 }
 // const msg = {
