@@ -12,7 +12,7 @@ class Results extends Component {
     this.state = { 
       isOpen: false,
       userId: undefined,
-      spaziId: this.props.spazi.id  };
+      spaziId: this.props.spazi._id  };
   }
 
   componentDidMount() {
@@ -26,7 +26,7 @@ class Results extends Component {
   }
   
   render() {
-    console.log("Results --- State", this.state)
+    //console.log("Results --- State", this.state)
     return (
       <div>
         <div className="results-container">
