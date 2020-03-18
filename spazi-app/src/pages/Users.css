@@ -14,3 +14,10 @@ users-main-container {
 .select-form--option{
     cursor: pointer;
 }
+
+.search-container {
+	border-bottom: 2px solid rgba(20,138,164,0.15);
+	padding: 5vh;
+	display: flex;
+	justify-content: space-around;
+}
