@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
       User  = mongoose.model('User');
+      Spazi  = mongoose.model('Spazi');
       Subject = mongoose.model('Subject');
       subjectCtrl = require('../controllers/subject');
 
+const sendEmail = require('../util/email');
 
 //GET
 exports.findAllUsers = async function (req, res){
@@ -30,6 +32,46 @@ exports.findCurrentUser = async function (req, res){
   } catch(error) {
     return res.status(403).send(error);
   }
+    // console.log('GET/users/me');
+};
+
+
+//POST contact a spazi
+exports.contactSpazi = async function (req, res){
+  try {
+    const user = await User.findById(req.id);
+
+    if (!user) throw "User token invalid. It is not a user";
+
+    const spazi = await Spazi.findById(req.body.spaziId);
+
+    if (!spazi) throw "Spazi not available";
+
+    const userName = user.name;
+    const userEmail = user.email;
+    const spaziName = spazi.name;
+    const spaziEmail = spazi.email;
+    const message = req.body.message;
+    const dateStart = req.body.dateStart;
+    const dateEnd = req.body.dateEnd;
+
+    const dataEmail = {
+      userEmail: userEmail,
+      userName: userName,
+      spaziName: spaziName,
+      spaziEmail: spaziEmail,
+      message: message,
+      dateStart: dateStart,
+      dateEnd: dateEnd
+    }
+
+    sendEmail(dataEmail);
+
+  } catch(error) {
+    return res.status(403).send(error);
+  }
+
+  res.status(200).json({status: 'OK', message: 'Message sent'});
     // console.log('GET/users/me');
 };
 
