@@ -42,7 +42,8 @@ class Results extends Component {
         </div>
         <Modal show={this.state.isOpen}
           onClose={this.toggleModal} userId={this.state.userId} spaziId={this.state.spaziId}>
-            INHALT FUERS MODAL HIER EINGEBEN
+            Remember, all our Spazis are animal lovers, we have selected them with high standard criteeria. <br/ >
+            You just need to love them!. We will take care of them for you. <br />
         </Modal>
       </div>
       
