@@ -1,0 +1,9 @@
+.centered-column-unique {
+    text-align: center;
+    justify-content: center;
+}
+
+p.special-p {
+    margin: auto;
+    margin-bottom: 2em;
+}
