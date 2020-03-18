@@ -29,7 +29,8 @@ class AuthComponent extends Component {
     }
 
     render() {
-        localStorage.setItem({ name: this.state.name, id: this.state.id})
+        localStorage.setItem("user-name", this.state.name);
+        localStorage.setItem("user-id", this.state.id);
         if (this.state.status === undefined) {
             return (
                 <div style={{display: "flex", justifyContent:"center", alignItems: "center"}}>
