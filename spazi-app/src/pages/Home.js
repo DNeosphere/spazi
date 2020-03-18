@@ -2,7 +2,7 @@ import React from "react";
 import "./../styles/base.css";
 import "./../styles/flexbox.css";
 
-import { Navbar, Banner, Footer, Comments } from "../components";
+import { Navbar, Banner, Footer, Comments, Authors } from "../components";
 
 function Home() {
   return (
@@ -10,6 +10,7 @@ function Home() {
       <Navbar />
       <Banner />
       <Comments />
+      <Authors />
       <Footer />
     </div>
   );
