@@ -1,14 +1,6 @@
-users-main-container {
-    min-width: 100vh;
-    background-color: red;
-    display: flex;
-    flex-direction: row;
-}
-
-
 .select-form--input {
     font-family: 'Varela Round', sans-serif;
-
+    width: 70vh;
 }
 
 .select-form--option{
@@ -21,3 +13,4 @@ users-main-container {
 	display: flex;
 	justify-content: space-around;
 }
+
