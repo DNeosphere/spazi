@@ -14,15 +14,15 @@ class Modal extends React.Component {
     this.state = {
       spaziId: this.props.spaziId
     }
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmit = this.handlePost.bind(this);
   }
 
-  handleSubmit(e) {
+  handlePost(e) {
     const url = 'https://spazi.rocks/api/users/contact-spazi';
     const data = {
       spaziId: this.state.spaziId
     };
-    e.preventDefeault();
+    e.preventDefault();
     try {
       postData(url, data).then(resp => {
         if (resp.status === "OK") {
@@ -52,21 +52,17 @@ class Modal extends React.Component {
       return null;
     }
 
-    alert(this.props.spazi)
-
     return (
       <div className="backdrop">
         <div className="modal">
           {this.props.children}
           <div className="footer">
-            <form onSubmit={this.handleSubmit}>
-              <button className="modal-btn" type="submit">
-                Match!
+            <button className="modal-btn" onClick={this.handlePost}>
+              Match!
               </button>
-              <button className="modal-btn" onClick={this.props.onClose}>
-                Close
+            <button className="modal-btn" onClick={this.props.onClose}>
+              Close
               </button>
-            </form>
           </div>
         </div>
       </div>
