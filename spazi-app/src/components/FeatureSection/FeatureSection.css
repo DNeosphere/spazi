@@ -1,0 +1,33 @@
+.feature-section {
+    background-color: #f7fafd;
+}
+
+.be-spazi-img {
+    background-image: url(../../imagesSpazi/woman-in-yellow-sweater-while-reading-a-book-3786748.jpg);
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-right: 20vh;
+    margin-left: 3vh;
+}
+
+.find-spazi-img {
+    background-image: url(../../imagesSpazi/pexels-photo-928449.jpeg);
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-right: 3vh;
+    margin-left: 20vh;
+}
+.f-col {
+    margin-bottom: 8vh;
+}
+.rate-spazi-img {
+    background-image: url(../../imagesSpazi/rate.svg);
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-right: 20vh;
+    margin-left: 3vh;
+    background-position: center;
+}

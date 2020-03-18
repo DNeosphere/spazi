@@ -1,0 +1,42 @@
+.banner {
+
+    color: #081826;
+    display: flex;
+    background-color: #f7fafd;
+    justify-content: space-around;
+}
+
+.banner-img {
+    width: 60vh;
+    height: 40vh;
+    background-image: url(../../imagesSpazi/doggy.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.banner-text {
+    padding-top: 2em;
+    flex-grow: 2;
+}
+
+p.tagline {
+    padding-bottom: 1em;
+    margin-bottom: auto;
+}
+
+.get-started-btn {
+	background-color: #131A40;
+	color: white;
+	border-radius: 3px;
+    font-size: 1.30em;
+    width: 200px;
+    height: 2.5em;
+	opacity: 1;
+	transition: 0.3s;
+	border-color: transparent;
+
+}
+.get-started-btn:hover{
+	background-color: #355B8C;
+}
+
