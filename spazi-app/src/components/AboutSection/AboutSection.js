@@ -1,32 +1,28 @@
 import React from 'react'
 
+import "./AboutSection.css"
+
 function AboutSection () {
     return (
-        <div className="row">
-            <div className="primary col">
-                <h2>ABOUT</h2>
-                <p>Spazi is the App you were looking for!</p>
-                <p>With Spazi, you can go on vacations and your cat, your dog or even your plants are going to be ok!
-                    Spazi provides the connection between people who need to leave their loved ones in safe hands and
-                    the Spazis, persons who are passionate about animals
+        <div className="row about-row">
+            <div className="primary col about-col">
+                <h2>About Us</h2>
+                <p></p>
+                <p>
+                    The idea of Spazi was born from a group of friends, brainstorming to create
+                    something nice that allows to make our lives easier. We know how busy are these days,
+                    and we also know how adorable pets are..
                 </p>
-                <p className='special-p'>
-                   "You just need to love them, <br/> we will take care of them for you"
+                <p>
+                    .. so we wanted to create a solution for busy people who also want to love a pet. Spazi 
+                    is also the portfolio project for Holberton School.
+                </p>
+                <p className='special-p about-p'>
+                    Animal lovers + software enginers = {"<"}3 Spazi! {"<"}3 
                 </p>
 
             </div>
-            
-            <div className="secondary col">
-                <h2>ABOUT</h2>
-                <p><strong>If you love animals </strong> and you have time and to take care of them, then
-                you can <strong>be a Spazi!</strong> we will be happy to hear from you.<br/>
-                We also love animals, that is why we have an application process to ensure the safety of them.
-                </p>
-                <p><strong>Find a Spazi! </strong> We understand the life rythm of these times, when you don't
-                have the time or you have to travel and can't take care of your loved ones, we will be there With
-                the perfect Spazi for you and your pet.</p>
 
-            </div>
 	</div>
     )
 }
