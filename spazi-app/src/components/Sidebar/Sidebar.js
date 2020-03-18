@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 
 import "./Sidebar.css"
 import LogoWhite from "../logo-white/logo-white";
+import {getData} from "../../helpers"
 
 class Sidebar extends Component {
     constructor(){
@@ -15,10 +16,11 @@ class Sidebar extends Component {
     }
     componentDidMount() {
         this.setState({ userName: localStorage.getItem('user-name') })
+        const response = getData().then(resp => this.setState({ userName: resp.name}));
     }
 
     render() {
-        console.log("USER NAME ----- ",localStorage.getItem('user-name'))
+        //console.log("USER NAME ----- ",localStorage.getItem('user-name'))
         return (
             <div className="nav-bar-container">
                 <nav className="nav-bar">
