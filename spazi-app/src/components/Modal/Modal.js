@@ -22,6 +22,7 @@ class Modal extends React.Component {
     const data = {
       spaziId: this.state.spaziId
     };
+    e.preventDefeault();
     try {
       postData(url, data).then(resp => {
         if (resp.status === "OK") {
