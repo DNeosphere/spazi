@@ -23,7 +23,7 @@ class AuthComponent extends Component {
 
     async getData() {
         const url = 'https://spazi.rocks/api/users/me';
-        const response = await fetch(url).then(resp => localStorage.setItem("user-name", resp.name));
+        const response = await fetch(url);
         this.setState({ status: response.status });
         let data = await response.json();
 
