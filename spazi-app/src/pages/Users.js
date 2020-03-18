@@ -59,12 +59,12 @@ function Users() {
                     <div className="search-container">
                         <form className='search-form' onSubmit={handleSubmit}>
                             <select className='select-form--input' value={selected} onChange={handleChange}>
-                                <option className="select-form--option" value=""> -- select a subject  -- </option>
+                                <option className="select-form--option" value=""> Look after my ...</option>
                                 <option className="select-form--option" value="dog">Dog</option>
                                 <option className="select-form--option" value="cat">Cat</option>
                                 <option className="select-form--option" value="plant">Plant</option>
                             </select>
-                            <input className='check-form--button submit-btn' type="submit" value="Search" />
+                            <input className='check-form--button submit-btn' type="submit" value="Find a Spazi!" />
                         </form>
                     </div>
                     {resultComponent}
