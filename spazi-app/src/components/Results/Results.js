@@ -4,11 +4,19 @@ import { Link } from "react-router-dom";
 import Modal from "../Modal/Modal";
 import "./Results.css";
 import Logo from "../../imagesSpazi/logo_blue.png";
+import {getData} from "../../helpers"
 
 class Results extends Component {
   constructor(props) {
     super(props);
-    this.state = { isOpen: false };
+    this.state = { 
+      isOpen: false,
+      userId: undefined,
+      spaziId: this.props.spazi.id  };
+  }
+
+  componentDidMount() {
+    const response = getData().then(resp => this.setState({ userId: resp.id}));
   }
 
   toggleModal = () => {
@@ -18,6 +26,7 @@ class Results extends Component {
   }
   
   render() {
+    console.log("Results --- State", this.state)
     return (
       <div>
         <div className="results-container">
@@ -32,7 +41,7 @@ class Results extends Component {
           </button>
         </div>
         <Modal show={this.state.isOpen}
-          onClose={this.toggleModal}>
+          onClose={this.toggleModal} userId={this.state.userId} spaziId={this.state.spaziId}>
             INHALT FUERS MODAL HIER EINGEBEN
         </Modal>
       </div>
