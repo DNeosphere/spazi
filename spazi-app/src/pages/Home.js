@@ -2,7 +2,8 @@ import React from "react";
 import "./../styles/base.css";
 import "./../styles/flexbox.css";
 
-import { Navbar, Banner, Footer, Comments, Authors } from "../components";
+import { Navbar, Banner, Footer, Comments, Authors, FeatureSection } from "../components";
+import AboutSection from "../components/AboutSection/AboutSection";
 
 function Home() {
   return (
@@ -10,6 +11,8 @@ function Home() {
       <Navbar />
       <Banner />
       <Comments />
+      <FeatureSection />
+      <AboutSection />
       <Authors />
       <Footer />
     </div>

@@ -11,3 +11,6 @@ export { default as Results} from './Results/Results.js';
 export { default as Modal} from './Modal/Modal.js';
 export { default as Search} from './Search/Search.js';
 export { default as AuthComponent} from './AuthComponent/AuthComponent.js';
+export { default as Authors} from './Authors/Authors.js';
+export { default as FeatureSection} from './FeatureSection/FeatureSection.js';
+export { default as AboutSection} from './AboutSection/AboutSection.js';

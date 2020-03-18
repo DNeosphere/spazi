@@ -1,3 +1,21 @@
 .banner {
-    background-image: url('https://res.cloudinary.com/spaziaws/image/upload/v1584535317/spazi-app/adorable-blur-breed-close-up-406014_1_x3ocnf.jpg');
+
+    color: #081826;
+    display: flex;
+    background-color: #f7fafd;
+    justify-content: space-around;
 }
+
+.banner-img {
+    width: 60vh;
+    height: 40vh;
+    background-image: url(../../imagesSpazi/doggy.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.banner-text {
+    padding-top: 2em;
+    flex-grow: 2;
+}
+

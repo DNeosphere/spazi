@@ -29,6 +29,7 @@ class AuthComponent extends Component {
         return data;
     }
 
+
     render() {
         if (this.state.status === undefined) {
             return (
