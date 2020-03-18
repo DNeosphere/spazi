@@ -14,11 +14,11 @@ class Sidebar extends Component {
         
     }
     componentDidMount() {
-        this.setState({ userName: localStorage.getItem('user-name') })
+        this.setState({ userName: localStorage.getItem('name') })
     }
 
     render() {
-        console.log("USER NAME ----- ",localStorage.getItem('user-name'))
+        console.log("USER NAME ----- ",localStorage.getItem('name'))
         return (
             <div className="nav-bar-container">
                 <nav className="nav-bar">
