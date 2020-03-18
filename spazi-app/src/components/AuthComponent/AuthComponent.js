@@ -16,15 +16,14 @@ class AuthComponent extends Component {
 
     componentDidMount() {
         const response = this.getData()
-        .then(resp => this.setState({ name: resp.name, id: resp.id }))
-        .then(localStorage.setItem("user-name", this.state.name))
-        .then(localStorage.setItem("user-id", this.state.id));
+        .then(resp => this.setState({ name: resp.name, id: resp.id }));
+
         //console.log("DataAuthComp", this.state.user);
     }
 
     async getData() {
         const url = 'https://spazi.rocks/api/users/me';
-        const response = await fetch(url);
+        const response = await fetch(url).then(resp => localStorage.setItem("user-name", resp.name));
         this.setState({ status: response.status });
         let data = await response.json();
 
