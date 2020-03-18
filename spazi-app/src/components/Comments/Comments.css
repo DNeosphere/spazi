@@ -1,9 +1,8 @@
-.centered-column-unique {
-    text-align: center;
-    justify-content: center;
+
+.comment-col {
+    max-width: 50%;
 }
 
-p.special-p {
-    margin: auto;
-    margin-bottom: 2em;
+.comment-row {
+    justify-content: center;
 }

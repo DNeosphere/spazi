@@ -22,7 +22,6 @@ function AboutSection () {
                 </p>
 
             </div>
-
 	</div>
     )
 }
