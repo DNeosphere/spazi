@@ -12,15 +12,16 @@ class Modal extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      spaziId: this.props.spaziId
+      spaziId: ""
     }
-    this.handleSubmit = this.handlePost.bind(this);
+    this.handlePost = this.handlePost.bind(this);
   }
 
   handlePost(e) {
+    
     const url = 'https://spazi.rocks/api/users/contact-spazi';
     const data = {
-      spaziId: this.state.spaziId
+      spaziId: this.props.spaziId
     };
     e.preventDefault();
     try {
