@@ -1,29 +1,37 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import DateTimePicker from 'react-datetime-picker'; 
 import PropTypes from 'prop-types';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
 import "./Modal.css"
 import { postData } from "../../helpers"
+const moment = require('moment');
 
 const MySwal = withReactContent(Swal);
 class Modal extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      spaziId: ""
+      date: new Date()
     }
     this.handlePost = this.handlePost.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
 
+  
+  onChange = date => this.setState({ date })
+
   handlePost(e) {
-    
+
     const url = 'https://spazi.rocks/api/users/contact-spazi';
     const data = {
-      spaziId: this.props.spaziId
+      spaziId: this.props.spaziId,
+      dateTime: this.state.date.toISOString()
     };
     e.preventDefault();
+
     try {
       postData(url, data).then(resp => {
         if (resp.status === "OK") {
@@ -57,6 +65,8 @@ class Modal extends React.Component {
       <div className="backdrop">
         <div className="modal">
           {this.props.children}
+          <DateTimePicker  onChange={this.onChange}
+            value={this.state.date}/>
           <div className="footer">
             <button className="modal-btn" onClick={this.handlePost}>
               Match!
