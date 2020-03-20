@@ -69,10 +69,10 @@ class Modal extends React.Component {
           {this.props.children}
           <div className="container--dates">
             <label for="dateStart">Date Start</label>
-            <DateTimePicker id="dateStart" onChange={this.onChange}
+            <DateTimePicker className="modal--date"id="dateStart" onChange={this.onChange}
               value={this.state.dateStart} required />
             <label for="dateEnd">Date end</label>
-            <DateTimePicker id="dateEnd" onChange={this.onChange}
+            <DateTimePicker className="modal--date" id="dateEnd" onChange={this.onChange}
               value={this.state.dateEnd} required />
           </div>
           <div className="footer">
