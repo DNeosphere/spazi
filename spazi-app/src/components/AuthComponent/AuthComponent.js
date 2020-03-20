@@ -41,7 +41,7 @@ class AuthComponent extends Component {
                     );
                 }
         
-        if (this.state.status === 401) {
+        if (this.state.status !== 200) {
                         this.props.history.push('/signin');
                 }
         
