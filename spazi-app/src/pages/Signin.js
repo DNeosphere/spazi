@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, Redirect} from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
@@ -7,7 +7,7 @@ import "../styles/forms.css";
 import "./../styles/base.css";
 import "./../styles/flexbox.css";
 
-import { Footer, Header, LogoWhite } from "../components/";
+import { LogoWhite } from "../components/";
 
 const MySwal = withReactContent(Swal);
 class SignIn extends Component {
@@ -17,7 +17,8 @@ class SignIn extends Component {
     this.state = {
       email: "",
       password: "",
-      redirect : false
+      redirect: false,
+      type: "user"
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -37,43 +38,39 @@ class SignIn extends Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    let data = {email: this.state.email, password: this.state.password}
+    let data = { email: this.state.email, password: this.state.password, type: this.state.type }
     const url = 'https://spazi.rocks/api/login'
 
     async function postData(url = '', data = {}) {
       const response = await fetch(url, {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
-          headers: {
+        headers: {
           'Content-Type': 'application/json'
-          },
+        },
         body: JSON.stringify(data) // body data type must match "Content-Type" header
       });
-      /* return await response.json().catch(err => console.log(err.meessage)) */
       return response
     }
     try {
       postData(url, data)
-      .then((resp) => {
-        if (resp.status === 200) {
-          this.props.history.push('/users')
-        } else {
-          MySwal.fire({
-            icon: 'Check again :)',
-            title: "Not a valid e-mail or password"
-          })
-        }
-      })
+        .then((resp) => {
+          if (resp.status === 200) {
+            this.props.history.push('/users')
+          } else {
+            MySwal.fire({
+              icon: 'Check again :)',
+              title: "Not a valid e-mail or password"
+            })
+          }
+        })
     } catch (error) {
       alert('Something went wrong')
-                console.log(error.message)
+      console.log(error.message)
     }
 
   }
 
   render() {
-    /*if (this.state.redirect === true) {
-      return <Redirect to='/users'  />
-    }*/
     return (
       <div className="form-container">
         <LogoWhite />
@@ -82,6 +79,10 @@ class SignIn extends Component {
           className="FormFields"
           onSubmit={this.handleSubmit}
         >
+          <div className="PageSwitcher">
+            <div to="/signinspazi" className="PageSwitcher__Item">Spazi</div>
+            <Link to="/signin" className="PageSwitcher__Item PageSwitcher__Item--Active">User</Link>
+          </div>
           <div className="FormField">
             <label className="FormField__Label" htmlFor="email">
               E-Mail Address

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
-import DateTimePicker from 'react-datetime-picker'; 
+import DateTimePicker from 'react-datetime-picker';
 import PropTypes from 'prop-types';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
@@ -14,13 +14,14 @@ class Modal extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      date: new Date()
+      dateStart: new Date(),
+      dateEnd: new Date()
     }
     this.handlePost = this.handlePost.bind(this);
     this.onChange = this.onChange.bind(this);
   }
 
-  
+
   onChange = date => this.setState({ date })
 
   handlePost(e) {
@@ -28,7 +29,8 @@ class Modal extends React.Component {
     const url = 'https://spazi.rocks/api/users/contact-spazi';
     const data = {
       spaziId: this.props.spaziId,
-      dateTime: this.state.date.toISOString()
+      dateStart: this.state.dateStart.toISOString(),
+      dateEnd: this.state.dateEnd.toISOString(),
     };
     e.preventDefault();
 
@@ -65,8 +67,14 @@ class Modal extends React.Component {
       <div className="backdrop">
         <div className="modal">
           {this.props.children}
-          <DateTimePicker  onChange={this.onChange}
-            value={this.state.date}/>
+          <div className="container--dates">
+            <label for="dateStart">Date Start</label>
+            <DateTimePicker id="dateStart" onChange={this.onChange}
+              value={this.state.dateStart} required />
+            <label for="dateEnd">Date end</label>
+            <DateTimePicker id="dateEnd" onChange={this.onChange}
+              value={this.state.dateEnd} required />
+          </div>
           <div className="footer">
             <button className="modal-btn" onClick={this.handlePost}>
               Match!

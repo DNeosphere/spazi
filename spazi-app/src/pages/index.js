@@ -5,3 +5,5 @@ export { default as SignUp } from './Signup.js';
 export { default as SignUpSpazi } from './Signupspazi.js';
 export { default as Users } from './Users.js';
 export { default as Logout } from './Logout.js';
+export { default as SignInSpazi } from './Signinspazi.js';
+export { default as Spazis } from './Spazis.js';
