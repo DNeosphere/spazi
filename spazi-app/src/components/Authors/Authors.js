@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 import "./Authors.css"
 import dani from '../../imagesSpazi/dani.jpg'
-import dioni from '../../imagesSpazi/dioni.jpeg'
+import dioni from '../../imagesSpazi/dionito.png'
 import charles from '../../imagesSpazi/charles.png'
 
 function Authors () {
@@ -26,7 +26,7 @@ function Authors () {
                 </div>
             </div>
             <div className="primary col">
-                <img className="auth-img" src={dioni}/>
+                <img className="auth-img dioni" src={dioni}/>
                 <h2>Dionisio Arango</h2>
                 <h3>Back-End</h3>
                 <div className="social-media">
