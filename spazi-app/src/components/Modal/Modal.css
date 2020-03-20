@@ -37,3 +37,9 @@
 .modal-btn:hover {
     background-color: #003153;
 }
+
+.container--dates {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
