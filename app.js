@@ -8,7 +8,7 @@ const express = require("express"),
     require('./models/register');
     require('./models/subject');
     require('./models/spazi');
-    withAuth = require('./util/auth.js');
+    auth = require('./util/auth.js');
     routeUser = require('./routes/userRoutes');
     routeRegister = require('./routes/registerRoutes');
     routeSubject = require('./routes/subjectRoutes');
@@ -50,11 +50,11 @@ app.get('/api/status', function(req, res) {
   res.json({status : 'OK'});
 });
 
-app.get('/api/checktoken', withAuth, function(req, res) {
+app.get('/api/checktoken', auth.withAuth, function(req, res) {
   res.sendStatus(200).json({status: 'OK', message: 'Token authenticated'});
 });
 
-app.use('/api', function (req, res, next) {
+app.use('/api*', function (req, res, next) {
   res.status(404).json({status: 'error', message: '[Error 404]: Page not found'});
 });
 
