@@ -2,15 +2,15 @@ import React from 'react'
 import { Link } from "react-router-dom"
 
 import "./Authors.css"
-import dani from '../../imagesSpazi/dani.jpg'
+import dani from '../../imagesSpazi/danihehe.png'
 import dioni from '../../imagesSpazi/dionito.png'
-import charles from '../../imagesSpazi/charles.png'
+import charles from '../../imagesSpazi/charloshehe.png'
 
 function Authors () {
     return (
         <div className="row authors-row" >
             <div className="primary col">
-                <img className="auth-img" src={dani}/>
+                <img className="auth-img dani" src={dani}/>
                 <h2>Daniela Gomez</h2>
                 <h3>Front-End</h3>
                 <div className="social-media">
@@ -42,7 +42,7 @@ function Authors () {
                 </div>
             </div>
             <div className="primary col">
-                <img className="auth-img" src={charles}/>
+                <img className="auth-img charlos" src={charles}/>
                 <h2>Carlos Zuluaga</h2>
                 <h3>DevOps</h3>
                 <div className="social-media">
