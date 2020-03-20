@@ -1,7 +1,10 @@
 const jwt = require('jsonwebtoken');
 const secret = process.env.SPAZI_JWT_SECRET;
+const mongoose = require('mongoose');
+      User  = mongoose.model('User');
+      Spazi  = mongoose.model('Spazi');
 
-const withAuth = function(req, res, next) {
+exports.withAuth = function(req, res, next) {
   const token = req.cookies.token;
   if (!token) {
     res.status(401).send('Unauthorized: No token provided');
@@ -17,4 +20,28 @@ const withAuth = function(req, res, next) {
   }
 }
 
-module.exports = withAuth;
+exports.userAuth = async function(req, res, next) {
+
+  try {
+
+    const user = await User.findById(req.id);
+    if (!user) throw "User token invalid. It is not a user";
+    next();
+
+  } catch(error) {
+    return res.status(403).send({status: "error", message: error});
+  }
+}
+
+exports.spaziAuth = async function(req, res, next) {
+
+  try {
+
+    const spazi = await Spazi.findById(req.id);
+    if (!spazi) throw "Spazi token invalid. It is not a spazi";
+    next();
+
+  } catch(error) {
+    return res.status(403).send({status: "error", message: error});
+  }
+}

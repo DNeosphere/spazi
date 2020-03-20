@@ -4,7 +4,7 @@ const router = new express.Router();
 const Login = require('../controllers/login');
 
 
-router.route('/login').post(Login.loginUser);
-router.route('/logout').get(Login.logoutUser);
+router.route('/login').post(Login.login);
+router.route('/logout').get(Login.logout);
 
 module.exports = router;

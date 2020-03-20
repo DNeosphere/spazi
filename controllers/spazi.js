@@ -8,6 +8,16 @@ exports.findAllSpazis = async function (req, res){
   res.status(200).json(spazis);
 };
 
+//GET information current spazi
+
+exports.findCurrentSpazi = async function (req, res){
+  const spazi = await Spazi.findById(req.id);
+
+    console.log('GET/spazis/me');
+    res.status(200).json(spazi);
+};
+
+
 //GET - By ID
 exports.findSpaziByID = async function (req, res){
   const spazi = await Spazi.findById(req.params.id).catch(err => console.error(err.message));
@@ -36,30 +46,37 @@ exports.findSpazisByCriteria = async function (req, res){
 //POST - Create a Spazi
 exports.createSpazi = async function(req, res){
 
-  const spazi = await new Spazi({
-  name: req.body.name,
-  age: req.body.age,
-  documentId: req.body.documentId,
-  password: req.body.password,
-  email: req.body.email,
-  imageUrl: req.body.imageUrl,
-  contact: req.body.contact,
-  billing: req.body.billing,
-  reviews: req.body.reviews,
-  specialization: req.body.specialization
-  })
+  try {
+    const spazi = await new Spazi({
+      name: req.body.name,
+      age: req.body.age,
+      documentId: req.body.documentId,
+      password: req.body.password,
+      email: req.body.email,
+      imageUrl: req.body.imageUrl,
+      contact: req.body.contact,
+      billing: req.body.billing,
+      reviews: req.body.reviews,
+      specialization: req.body.specialization
+      });
+
+    console.log('POST/spazis/');
+    spazi.save(function (err){
+    if(err) throw err;
+    
+    res.status(200).json({status: 'OK', message: `Spazi ${spazi.name} created`});
+  });
+  } catch(error) {
+    return res.status(400).json({status: 'error', message: 'CHeck your data'})
+  }
+
   
 //   spazi.catch(error => {
 //     return res.status(500).json({status: 'error',
 //     message: `[Error 500]: ${error.message}`});
 // });
 
-  console.log('POST/spazis/');
-  spazi.save(function (err){
-    if(err) res.status(500).send(err.message);
-    
-    res.status(200).json({status: 'OK', message: `Spazi ${spazi.name} created`});
-  });
+
 };
 
 
