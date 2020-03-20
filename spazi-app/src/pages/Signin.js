@@ -80,7 +80,7 @@ class SignIn extends Component {
           onSubmit={this.handleSubmit}
         >
           <div className="PageSwitcher">
-            <div to="/signinspazi" className="PageSwitcher__Item">Spazi</div>
+            <Link to="/signinspazi" className="PageSwitcher__Item">Spazi</Link>
             <Link to="/signin" className="PageSwitcher__Item PageSwitcher__Item--Active">User</Link>
           </div>
           <div className="FormField">
