@@ -14,3 +14,4 @@ export { default as AuthComponent} from './AuthComponent/AuthComponent.js';
 export { default as Authors} from './Authors/Authors.js';
 export { default as FeatureSection} from './FeatureSection/FeatureSection.js';
 export { default as AboutSection} from './AboutSection/AboutSection.js';
+export { default as AuthComponentSpazi} from './AuthComponentSpazi/AuthComponentSpazi.js';
