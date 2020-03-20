@@ -43,3 +43,7 @@
     flex-direction: column;
     justify-content: space-around;
 }
+
+.react-datetime-picker, .react-datetime-picker *, .react-datetime-picker *:before, .react-datetime-picker *:after {
+    color:white;
+}
