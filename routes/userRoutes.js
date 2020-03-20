@@ -1,15 +1,16 @@
 const express = require('express');
-const withAuth = require('../util/auth.js');
+const auth = require('../util/auth.js');
 
 const router = new express.Router();
 const User = require('../controllers/user');
 
-router.route('/users').get(withAuth, User.findAllUsers)
+router.route('/users').get(auth.withAuth, auth.userAuth, User.findAllUsers)
 router.route('/users').post(User.createUser);
-router.route('/users/me').get(withAuth, User.findCurrentUser);
-router.route('/users/contact-spazi').post(withAuth, User.contactSpazi);
-router.route('/users/:id').get(withAuth, User.findUserByID);
-router.route('/users/:id').put(withAuth, User.updateUser);
-router.route('/users/:id').delete(withAuth, User.deleteUser);
+router.route('/users/me').get(auth.withAuth, auth.userAuth, User.findCurrentUser);
+router.route('/users/contact-spazi').post(auth.withAuth, auth.userAuth, User.contactSpazi);
+router.route('/users/match-spazi').post(auth.withAuth, auth.userAuth);
+router.route('/users/:id').get(auth.withAuth, auth.userAuth, User.findUserByID);
+router.route('/users/:id').put(auth.withAuth, auth.userAuth, User.updateUser);
+router.route('/users/:id').delete(auth.withAuth, auth.userAuth, User.deleteUser);
 
 module.exports = router;
